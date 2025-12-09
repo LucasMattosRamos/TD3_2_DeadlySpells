@@ -17,7 +17,6 @@
   <ItemGroup>
     <Resource Include="Accueil.png" />
     <Resource Include="imageAccueil.jpg" />
-    <Resource Include="Images\imageAccueil.jpg" />
   </ItemGroup>
 
 </Project>
