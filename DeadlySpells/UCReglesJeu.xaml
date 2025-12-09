@@ -1,15 +1,12 @@
-﻿<Window x:Class="DeadlySpells.MainWindow"
+﻿<Window x:Class="DeadlySpells.UCReglesJeu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DeadlySpells"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="UCReglesJeu" Height="450" Width="800">
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/imageAccueil.jpg"/>
-        </Grid.Background>
-
+        
     </Grid>
 </Window>
