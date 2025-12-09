@@ -9,5 +9,7 @@
     <Window.Background>
         <ImageBrush ImageSource="/Accueil.png"/>
     </Window.Background>
-    <TextBox HorizontalAlignment="Left" Height="154" Margin="97,116,0,0" TextWrapping="Wrap" Text="Deadly Spells" VerticalAlignment="Top" Width="625" TextChanged="TextBox_TextChanged"/>
+    <TextBlock HorizontalAlignment="Left" Margin="166,156,0,0" TextWrapping="Wrap" Text="Deadly Spells" VerticalAlignment="Top" Height="97" Width="492" FontFamily="Goudy Old Style" FontSize="90" Foreground="White"/>
+    
+    
 </Window>
