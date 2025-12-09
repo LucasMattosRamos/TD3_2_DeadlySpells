@@ -6,7 +6,21 @@
         xmlns:local="clr-namespace:DeadlySpells"
         mc:Ignorable="d"
         Title="UCReglesJeu" Height="450" Width="800">
+
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="/Accueil.png"/>
+        </Grid.Background>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+
+        </StackPanel>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="241" Width="800" FontFamily="Goudy Old Style" FontSize="20" Foreground="#FF43DE54" Margin="0,128,0,0"><Run Language="fr-fr" Text="U"/><Run Text="n jeu pvp avec 3 personnages (sorcier feu, sorcier glace, sorcier orage). &#xD;&#xA;Chaque joueur a 3 vies, chaque fois que le sort touche un personnage, on perd une vie.&#xD;&#xA;Le premier arrivé a 0 perd le combat.&#xD;&#xA;On a un timer, si aucun des personnages gagne alors le personnage avec le plus de vie gagne si c’est égalité le timer continue jusqu’à ce que quelqu’un perd une vie en premier.&#xD;&#xA;On a le choix de sélection des personnages et des maps.&#xD;&#xA;menu pause menu quitter, menu avec des paramètres (son et bruitage by aurel on verra si possible)&#xD;&#xA;Dans les maps il y aura des partie avec des trous, si l’un d’entre eux tombe dedans il perd la partie ou il perd une vie et reviens pour continuer la partie ( à déterminer)"/><Run/></TextBlock>
+        <Button Content="Entrer" HorizontalAlignment="Left" Margin="666,0,0,34" VerticalAlignment="Bottom" RenderTransformOrigin="0.549,-1.067" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" Click="Button_Click" FontSize="20"/>
+
+
+
     </Grid>
+
+
 </Window>
