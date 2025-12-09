@@ -6,10 +6,8 @@
         xmlns:local="clr-namespace:DeadlySpells"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/imageAccueil.jpg"/>
-        </Grid.Background>
-
-    </Grid>
+    <Window.Background>
+        <ImageBrush ImageSource="/Accueil.png"/>
+    </Window.Background>
+    <TextBox HorizontalAlignment="Left" Height="154" Margin="97,116,0,0" TextWrapping="Wrap" Text="Deadly Spells" VerticalAlignment="Top" Width="625" TextChanged="TextBox_TextChanged"/>
 </Window>
