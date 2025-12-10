@@ -22,7 +22,7 @@
             </RadioButton.Content>
         </RadioButton>
 
-        <RadioButton x:Name="sorcierglace" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="546,128,0,0" Checked="sorcierglace_Checked">
+        <RadioButton x:Name="sorcierglace" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="546,128,0,0" >
             <RadioButton.Content>
                 <Image Source="/ImagesSorcier/PNG/wizard_ice/1_IDLE_004.png" Width="150" Height="150"/>
             </RadioButton.Content>

@@ -11,12 +11,11 @@ using System.Windows.Shapes;
 
 namespace DeadlySpells
 {
-    /// <summary>
+
     /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
-
 
         public MainWindow()
         {
@@ -26,34 +25,56 @@ namespace DeadlySpells
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            // rien pour l'instant
         }
+
+        /// <summary>
+        /// Affiche l'écran de démarrage (UCDemarrage)
+        /// </summary>
         private void AfficheDemarrage()
         {
-            // crée et charge l'écran de démarrage
             UCDemarrage uc = new UCDemarrage();
-            // associe l'écran au conteneur
             ZoneJeu.Content = uc;
 
+            // UCDemarrage -> UCReglesJeu
             uc.butRegles.Click += AfficherReglesJeu;
-            uc.butDemarrer.Click += AfficherChoixPerso;
+
+            // UCDemarrage -> UCChoixPerso
+            uc.butLancer.Click += AfficherChoixPerso;
         }
 
+        /// <summary>
+        /// UCDemarrage ou UCReglesJeu -> UCChoixPerso
+        /// </summary>
         private void AfficherChoixPerso(object sender, RoutedEventArgs e)
         {
             UCChoixPerso uc = new UCChoixPerso();
             ZoneJeu.Content = uc;
+
+            // UCChoixPerso -> UCChoisMaps
+            uc.butChoixMap.Click += AfficherChoisMaps;
         }
 
+        /// <summary>
+        /// UCDemarrage -> UCReglesJeu
+        /// </summary>
         private void AfficherReglesJeu(object sender, RoutedEventArgs e)
         {
             UCReglesJeu uc = new UCReglesJeu();
             ZoneJeu.Content = uc;
 
+            // UCReglesJeu -> UCChoixPerso
+            uc.butEntrer.Click += AfficherChoixPerso;
         }
 
-
-
-
+        /// <summary>
+        /// UCChoixPerso -> UCChoisMaps
+        /// </summary>
+        private void AfficherChoisMaps(object sender, RoutedEventArgs e)
+        {
+            UCChoisMaps uc = new UCChoisMaps();
+            ZoneJeu.Content = uc;
+        }
     }
+
 }

@@ -19,7 +19,7 @@ namespace DeadlySpells
     /// </summary>
     public partial class UCReglesJeu : UserControl
     {
-        internal object butDemarrer;
+       
 
         public UCReglesJeu()
         {
