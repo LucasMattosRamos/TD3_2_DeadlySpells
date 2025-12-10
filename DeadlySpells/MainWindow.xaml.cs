@@ -21,12 +21,17 @@ namespace DeadlySpells
         {
             InitializeComponent();
             AfficheDemarrage();
+            AfficherChoixPerso();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
+
+       
+        /////////////////////////////////////////////////////
+   
         private void AfficheDemarrage()
         {
             // crée et charge l'écran de démarrage
@@ -44,6 +49,24 @@ namespace DeadlySpells
         }
 
 
+        
+        ///////////////////////////////////////////////////////
+   
+        private void AfficherChoixPerso()
+        {
+
+            UCChoixPerso uc = new UCChoixPerso();
+            ZoneJeu.Content = uc;
+        }
+
+        private void AfficherChoixPerso(object sender, RoutedEventArgs e)
+        {
+            UCChoixPerso uc = new UCChoixPerso();
+            ZoneJeu.Content = uc;
+        }
+
+        //////////////////////////////////////////////
+       
 
 
 
