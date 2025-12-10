@@ -10,22 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DeadlySpells
 {
     /// <summary>
-    /// Logique d'interaction pour UCReglesJeu.xaml
+    /// Logique d'interaction pour UCJeu.xaml
     /// </summary>
-    public partial class UCReglesJeu : UserControl
+    public partial class UCJeu : UserControl
     {
-        internal object butDemarrer;
-
-        public UCReglesJeu()
+        public UCJeu()
         {
             InitializeComponent();
         }
-
-       
     }
 }

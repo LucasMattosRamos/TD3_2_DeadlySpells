@@ -6,17 +6,11 @@
         xmlns:local="clr-namespace:DeadlySpells"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.Background>
+    <ContentControl x:Name="ZoneJeu" />
+    <ContentControl.Background>
         <ImageBrush ImageSource="/Accueil.png"/>
-    </Window.Background>
-    <Grid x:Name="ZoneJeu" >
-
-
-        <Image Margin="150,-34,150,-32" Source="/Images/F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" Stretch="Fill"/>
-        <Button x:Name="butReglesJeu" Content="Lancer" HorizontalAlignment="Left" Margin="450,352,0,0" VerticalAlignment="Top" Height="52" Width="150" FontSize="22" FontFamily="Goudy Old Style"/>
-        <Button x:Name="butLancerJeu" Content="Règles du jeu" HorizontalAlignment="Left" Margin="200,352,0,0" VerticalAlignment="Top" Height="52" Width="150" Click="Button_Click" FontSize="22" FontFamily="Goudy Old Style"/>
-
-
-    </Grid>
+    </ContentControl.Background>
+    
+ 
 
 </Window>

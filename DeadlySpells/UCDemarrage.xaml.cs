@@ -15,17 +15,20 @@ using System.Windows.Shapes;
 namespace DeadlySpells
 {
     /// <summary>
-    /// Logique d'interaction pour UCReglesJeu.xaml
+    /// Logique d'interaction pour UCDemarrage.xaml
     /// </summary>
-    public partial class UCReglesJeu : UserControl
+    public partial class UCDemarrage : UserControl
     {
-        internal object butDemarrer;
-
-        public UCReglesJeu()
+        public UCDemarrage()
         {
             InitializeComponent();
         }
 
-       
+     
+
+        public void butDemarrer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
