@@ -12,6 +12,7 @@
     <None Remove="Accueil.png" />
     <None Remove="F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" />
     <None Remove="imageAccueil.jpg" />
+    <None Remove="Images\Accueil.png" />
     <None Remove="Images\F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" />
     <None Remove="Images\imageAccueil.jpg" />
   </ItemGroup>
@@ -19,6 +20,7 @@
   <ItemGroup>
     <Resource Include="Accueil.png" />
     <Resource Include="F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" />
+    <Resource Include="Images\Accueil.png" />
     <Resource Include="Images\F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" />
   </ItemGroup>
 
