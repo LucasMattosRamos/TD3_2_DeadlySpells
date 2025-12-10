@@ -7,8 +7,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Image Margin="0,0,10,0" Source="/Images/Accueil.png" Stretch="Fill"/>
-        <Button Content="Choix des maps" HorizontalAlignment="Left" Margin="684,397,0,0" VerticalAlignment="Top"/>
+        <Button Content="Choix des maps" HorizontalAlignment="Left" Margin="645,373,0,0" VerticalAlignment="Top" Height="41" Width="113"/>
+        <Label x:Name="labConsigne" Content="Choix du personnage" Margin="0,50,0,0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18"/>
+        
+        <RadioButton x:Name="sorcierfeu" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="105,0,0,0">
+            <RadioButton.Content>
+                <Image Source="/ImagesSorcier/PNG/wizard_fire/1_IDLE_004.png" Width="138" Height="150"/>
+            </RadioButton.Content>
+        </RadioButton>
 
+        <RadioButton x:Name="sorcierOrage" Width="150" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <RadioButton.Content>
+                <Image Source="/ImagesSorcier/PNG/wizard/1_IDLE_004.png" Width="150" Height="150"/>
+            </RadioButton.Content>
+        </RadioButton>
+
+        <RadioButton x:Name="sorcierglace" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="546,128,0,0" Checked="sorcierglace_Checked">
+            <RadioButton.Content>
+                <Image Source="/ImagesSorcier/PNG/wizard_ice/1_IDLE_004.png" Width="150" Height="150"/>
+            </RadioButton.Content>
+        </RadioButton>
     </Grid>
 </UserControl>

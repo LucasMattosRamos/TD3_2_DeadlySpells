@@ -12,6 +12,9 @@
     <None Remove="Accueil.png" />
     <None Remove="F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" />
     <None Remove="imageAccueil.jpg" />
+    <None Remove="ImagesSorcier\PNG\wizard\1_IDLE_004.png" />
+    <None Remove="ImagesSorcier\PNG\wizard_fire\1_IDLE_004.png" />
+    <None Remove="ImagesSorcier\PNG\wizard_ice\1_IDLE_004.png" />
     <None Remove="Images\Accueil.png" />
     <None Remove="Images\F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" />
     <None Remove="Images\imageAccueil.jpg" />
@@ -20,6 +23,9 @@
   <ItemGroup>
     <Resource Include="Accueil.png" />
     <Resource Include="F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" />
+    <Resource Include="ImagesSorcier\PNG\wizard\1_IDLE_004.png" />
+    <Resource Include="ImagesSorcier\PNG\wizard_fire\1_IDLE_004.png" />
+    <Resource Include="ImagesSorcier\PNG\wizard_ice\1_IDLE_004.png" />
     <Resource Include="Images\Accueil.png" />
     <Resource Include="Images\F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" />
   </ItemGroup>

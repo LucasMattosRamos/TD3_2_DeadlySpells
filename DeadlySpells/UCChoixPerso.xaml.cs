@@ -24,5 +24,10 @@ namespace DeadlySpells
         {
             InitializeComponent();
         }
+
+        private void sorcierglace_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
