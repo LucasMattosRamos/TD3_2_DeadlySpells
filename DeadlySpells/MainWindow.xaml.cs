@@ -40,7 +40,15 @@ namespace DeadlySpells
             ZoneJeu.Content = uc;
             
             uc.butRegles.Click += AfficherReglesJeu;
+            uc.butDemarrer.Click += AfficherChoixPerso;
         }
+
+        private void AfficherChoixPerso(object sender, RoutedEventArgs e)
+        {
+            UCChoixPerso uc = new UCChoixPerso();
+            ZoneJeu.Content = uc;
+        }
+
         private void AfficherReglesJeu(object sender, RoutedEventArgs e)
         {
             UCReglesJeu uc = new UCReglesJeu();
@@ -49,10 +57,9 @@ namespace DeadlySpells
         }
 
 
-        
-        ///////////////////////////////////////////////////////
-   
-        private void AfficherChoixPerso()
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
 
             UCChoixPerso uc = new UCChoixPerso();
