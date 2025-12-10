@@ -16,9 +16,11 @@ namespace DeadlySpells
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -26,9 +28,7 @@ namespace DeadlySpells
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
+
     }
 }
