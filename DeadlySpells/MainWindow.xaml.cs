@@ -17,28 +17,24 @@ namespace DeadlySpells
     public partial class MainWindow : Window
     {
 
+
         public MainWindow()
         {
             InitializeComponent();
             AfficheDemarrage();
-            AfficherChoixPerso();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
-
-       
-        /////////////////////////////////////////////////////
-   
         private void AfficheDemarrage()
         {
             // crée et charge l'écran de démarrage
             UCDemarrage uc = new UCDemarrage();
             // associe l'écran au conteneur
             ZoneJeu.Content = uc;
-            
+
             uc.butRegles.Click += AfficherReglesJeu;
             uc.butDemarrer.Click += AfficherChoixPerso;
         }
@@ -56,24 +52,6 @@ namespace DeadlySpells
 
         }
 
-
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            UCChoixPerso uc = new UCChoixPerso();
-            ZoneJeu.Content = uc;
-        }
-
-        private void AfficherChoixPerso(object sender, RoutedEventArgs e)
-        {
-            UCChoixPerso uc = new UCChoixPerso();
-            ZoneJeu.Content = uc;
-        }
-
-        //////////////////////////////////////////////
-       
 
 
 
