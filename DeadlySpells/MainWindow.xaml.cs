@@ -16,15 +16,35 @@ namespace DeadlySpells
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+
         public MainWindow()
         {
             InitializeComponent();
+            AfficheDemarrage();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
+        private void AfficheDemarrage()
+        {
+            // crée et charge l'écran de démarrage
+            UCDemarrage uc = new UCDemarrage();
+            // associe l'écran au conteneur
+            ZoneJeu.Content = uc;
+            
+            uc.butRegles.Click += AfficherReglesJeu;
+        }
+        private void AfficherReglesJeu(object sender, RoutedEventArgs e)
+        {
+            UCReglesJeu uc = new UCReglesJeu();
+            ZoneJeu.Content = uc;
+
+        }
+
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
