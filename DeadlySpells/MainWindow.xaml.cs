@@ -67,7 +67,6 @@ namespace DeadlySpells
 
             // UCReglesJeu -> UCChoixPerso
             uc.butPassez.Click += AfficherChoixPerso;
-            // UCChoixPerso -> UCReglesJeu
             uc.butRetour.Click += AfficherDemarrageRegle;
 
         }
@@ -85,21 +84,7 @@ namespace DeadlySpells
         {
             UCChoisMaps uc = new UCChoisMaps();
             ZoneJeu.Content = uc;
-
-            // UCChoisMaps -> UCChoixPerso
-            uc.butJouer.Click += AfficherJeu;
-            // UCChoisMaps -> UCChoixPerso
-            uc.butRetour.Click += AfficherChoixPerso; 
         }
-
-        private void AfficherJeu(object sender, RoutedEventArgs e)
-        {
-            UCJeu uc = new UCJeu();
-            ZoneJeu.Content = uc;
-        }
-
-
-
     }
 
 }

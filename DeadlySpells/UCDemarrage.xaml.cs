@@ -30,5 +30,10 @@ namespace DeadlySpells
         {
 
         }
+
+        private void butRegles_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
