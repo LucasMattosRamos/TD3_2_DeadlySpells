@@ -65,11 +65,11 @@ namespace DeadlySpells
 
             // UCReglesJeu -> UCChoixPerso
             uc.butPassez.Click += AfficherChoixPerso;
-            uc.butRetour.Click += AfficherDemarrageRegles;
+            uc.butRetour.Click += AfficherDemarrageRegle;
 
         }
 
-        private void AfficherDemarrageRegles(object sender, RoutedEventArgs e)
+        private void AfficherDemarrageRegle(object sender, RoutedEventArgs e)
         {
             AfficheDemarrage();
         }
