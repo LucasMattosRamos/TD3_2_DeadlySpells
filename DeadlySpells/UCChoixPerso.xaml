@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Button x:Name="butChoixMap" Content="Choix des maps" HorizontalAlignment="Left" Margin="645,373,0,0" VerticalAlignment="Top" Height="41" Width="113"/>
-        <TextBlock HorizontalAlignment="Center" Margin="0,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="264" Foreground="#FFFBF4F4" FontSize="24"><Run Language="fr-fr" Text="Choisissez vos sorciers"/></TextBlock>
+        <Button x:Name="butChoixMap" Content="MAPS" HorizontalAlignment="Left" Margin="645,373,0,0" VerticalAlignment="Top" Height="41" Width="113" Background="#FFFFDD12" FontSize="20" Click="butChoixMap_Click" FontFamily="Goudy Old Style"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="323" Foreground="#FFFBF4F4" FontSize="36" FontFamily="Goudy Old Style"><Run Language="fr-fr" Text="Choisissez vos sorciers"/></TextBlock>
         <ComboBox HorizontalAlignment="Left" Margin="145,281,0,0" VerticalAlignment="Top" Width="120">
 
             <ComboBoxItem Content="Feu"/>
@@ -26,7 +26,7 @@
 
         <TextBox HorizontalAlignment="Left" Margin="145,99,0,0" TextWrapping="Wrap" Text="Joueur 1" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
         <TextBox HorizontalAlignment="Left" Margin="523,99,0,0" TextWrapping="Wrap" Text="Joueur 2" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="butRetour" Content="Retour" HorizontalAlignment="Left" Margin="57,0,0,34" VerticalAlignment="Bottom" RenderTransformOrigin="0.549,-1.067" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" FontSize="20"/>
+        <Button x:Name="butRetour" Content="RETOUR" HorizontalAlignment="Left" Margin="29,0,0,36" VerticalAlignment="Bottom" RenderTransformOrigin="0.549,-1.067" BorderBrush="{x:Null}" Foreground="#FF210000" FontSize="20" Background="#FFFFDD12" Height="41" Width="103" FontFamily="Goudy Old Style"/>
 
     </Grid>
 </UserControl>

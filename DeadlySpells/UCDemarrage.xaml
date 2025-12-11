@@ -9,9 +9,9 @@
     <Grid>
 
 
-    <Image Margin="150,-34,150,-32" Source="/Images/F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" Stretch="Fill"/>
-        <Button  x:Name="butLancer" Content="Lancer" HorizontalAlignment="Left" Margin="450,352,0,0" VerticalAlignment="Top" Height="52" Width="150" FontSize="22" FontFamily="Goudy Old Style"/>
-        <Button  x:Name="butRegles" Content="Règles du jeu" HorizontalAlignment="Left" Margin="200,352,0,0" VerticalAlignment="Top" Height="52" Width="150" FontSize="22" FontFamily="Goudy Old Style"/>
+    <Image Margin="150,-34,150,-32" Source="/Images/Deadly Spells ecrit.png" Stretch="Fill"/>
+        <Button  x:Name="butLancer" Content="LANCER" HorizontalAlignment="Left" Margin="450,352,0,0" VerticalAlignment="Top" Height="52" Width="150" FontSize="22" FontFamily="Goudy Old Style"/>
+        <Button  x:Name="butRegles" Content="REGLES" HorizontalAlignment="Left" Margin="200,352,0,0" VerticalAlignment="Top" Height="52" Width="150" FontSize="22" FontFamily="Goudy Old Style"/>
 
 
    </Grid>
