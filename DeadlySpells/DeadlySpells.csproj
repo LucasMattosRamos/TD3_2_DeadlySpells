@@ -135,6 +135,7 @@
     <None Remove="Images\RegleDeJeu.png" />
     <None Remove="Images\RegleEcrite.png" />
     <None Remove="Images\REGLESDUJEU.png" />
+    <None Remove="UCChoisMaps.xaml~RF5754f1e.TMP" />
   </ItemGroup>
 
   <ItemGroup>

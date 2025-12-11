@@ -29,5 +29,9 @@ namespace DeadlySpells
 
         }
 
+        private void butChoixMap_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
