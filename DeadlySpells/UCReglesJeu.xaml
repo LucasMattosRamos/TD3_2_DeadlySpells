@@ -16,7 +16,7 @@
 
         </StackPanel>
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="241" Width="780" FontFamily="Goudy Old Style" FontSize="20" Foreground="White" Margin="0,128,0,0" Text="Affrontez vos adversaires dans un combat PvP intense avec trois personnages uniques : Sorcier Feu, Sorcier Glace et Sorcier Orage. Chaque joueur commence avec trois vies ; chaque sort qui vous touche vous en fait perdre une. Le premier à tomber à zéro vie perd la partie. Un timer détermine le vainqueur si aucun joueur n’est éliminé : celui qui conserve le plus de vies l’emporte, et en cas d’égalité, le combat continue jusqu’à ce qu’un joueur perde une vie. Choisissez votre personnage, sélectionnez votre map et plongez dans des arènes pleines de dangers, dont des zones avec des trous pouvant vous coûter la victoire ou une vie (règle à définir). Des menus vous permettent de mettre en pause, quitter ou ajuster les paramètres audio pour une expérience optimale."/>
-        <Button x:Name="butEntrer" Content="Entrer" HorizontalAlignment="Left" Margin="666,0,0,34" VerticalAlignment="Bottom" RenderTransformOrigin="0.549,-1.067" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" FontSize="20"/>
+        <Button x:Name="butPassez" Content="Passez" HorizontalAlignment="Left" Margin="666,0,0,34" VerticalAlignment="Bottom" RenderTransformOrigin="0.549,-1.067" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" FontSize="20"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="48" Width="332"><Run Text="Règles de Jeu"/><Run Language="fr-fr" Text=" :"/></TextBlock>
 
 

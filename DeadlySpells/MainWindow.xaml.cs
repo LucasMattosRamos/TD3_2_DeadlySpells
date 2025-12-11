@@ -64,7 +64,7 @@ namespace DeadlySpells
             ZoneJeu.Content = uc;
 
             // UCReglesJeu -> UCChoixPerso
-            uc.butEntrer.Click += AfficherChoixPerso;
+            uc.butPassez.Click += AfficherChoixPerso;
         }
 
         /// <summary>

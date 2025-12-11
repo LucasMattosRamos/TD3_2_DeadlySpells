@@ -127,13 +127,16 @@
     <None Remove="ImagesSorcier\PNG\wizard_ice\7_DIE_008.png" />
     <None Remove="ImagesSorcier\PNG\wizard_ice\7_DIE_011.png" />
     <None Remove="Images\Accueil.png" />
+    <None Remove="Images\Deadly Spells.png" />
     <None Remove="Images\F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" />
+    <None Remove="Images\Fond.png" />
     <None Remove="Images\imageAccueil.jpg" />
+    <None Remove="Images\RegleDeJeu.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Accueil.png" />
-    <Resource Include="F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" />
+    <Resource Include="Images\F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" />
     <Resource Include="Images maps\epinesFeu.png" />
     <Resource Include="Images maps\epinesGlace.png" />
     <Resource Include="Images maps\epinesTombe.png" />
@@ -249,7 +252,8 @@
     <Resource Include="ImagesSorcier\PNG\wizard_ice\7_DIE_008.png" />
     <Resource Include="ImagesSorcier\PNG\wizard_ice\7_DIE_011.png" />
     <Resource Include="Images\Accueil.png" />
-    <Resource Include="Images\F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" />
+    <Resource Include="Images\Fond.png" />
+    <Resource Include="Images\RegleDeJeu.png" />
   </ItemGroup>
 
 </Project>

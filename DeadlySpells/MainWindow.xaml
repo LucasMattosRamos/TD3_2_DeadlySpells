@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <ContentControl x:Name="ZoneJeu" />
     <ContentControl.Background>
-        <ImageBrush ImageSource="/Accueil.png"/>
+        <ImageBrush ImageSource="/Images/Fond.png"/>
     </ContentControl.Background>
     
  
