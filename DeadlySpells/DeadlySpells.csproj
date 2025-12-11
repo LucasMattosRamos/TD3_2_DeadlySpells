@@ -12,6 +12,15 @@
     <None Remove="Accueil.png" />
     <None Remove="F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" />
     <None Remove="imageAccueil.jpg" />
+    <None Remove="Images maps\epinesFeu.png" />
+    <None Remove="Images maps\epinesGlace.png" />
+    <None Remove="Images maps\epinesTombe.png" />
+    <None Remove="Images maps\Fond Feu.png" />
+    <None Remove="Images maps\FondGlace.png" />
+    <None Remove="Images maps\fondTombe.png" />
+    <None Remove="Images maps\SolFeu.png" />
+    <None Remove="Images maps\SolGlace.png" />
+    <None Remove="Images maps\SolTombe.png" />
     <None Remove="ImagesSorcier\PNG\wizard\1_IDLE_000.png" />
     <None Remove="ImagesSorcier\PNG\wizard\1_IDLE_001.png" />
     <None Remove="ImagesSorcier\PNG\wizard\1_IDLE_002.png" />
@@ -125,6 +134,15 @@
   <ItemGroup>
     <Resource Include="Accueil.png" />
     <Resource Include="F2FD27C7-3C49-4B9D-A7C6-D923D83CFDFF-removebg-preview.png" />
+    <Resource Include="Images maps\epinesFeu.png" />
+    <Resource Include="Images maps\epinesGlace.png" />
+    <Resource Include="Images maps\epinesTombe.png" />
+    <Resource Include="Images maps\Fond Feu.png" />
+    <Resource Include="Images maps\FondGlace.png" />
+    <Resource Include="Images maps\fondTombe.png" />
+    <Resource Include="Images maps\SolFeu.png" />
+    <Resource Include="Images maps\SolGlace.png" />
+    <Resource Include="Images maps\SolTombe.png" />
     <Resource Include="ImagesSorcier\PNG\wizard\1_IDLE_000.png" />
     <Resource Include="ImagesSorcier\PNG\wizard\1_IDLE_001.png" />
     <Resource Include="ImagesSorcier\PNG\wizard\1_IDLE_002.png" />
