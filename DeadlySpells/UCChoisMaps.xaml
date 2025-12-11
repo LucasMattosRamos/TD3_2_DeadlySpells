@@ -9,5 +9,25 @@
     <Grid>
         <Button x:Name="butJouer" Content="Jouer" HorizontalAlignment="Left" Margin="678,375,0,0" VerticalAlignment="Top" Height="38" Width="77" FontSize="20"/>
 
+        <Label x:Name="labConsigne" Content="Choix des Maps" Margin="0,50,0,0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18"/>
+
+        <RadioButton x:Name="sorcierfeu" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="105,0,0,0">
+            <RadioButton.Content>
+                <Image Source="/Images maps/Fond Feu.png" Width="138" Height="150"/>
+            </RadioButton.Content>
+        </RadioButton>
+
+        <RadioButton x:Name="sorcierOrage" Width="150" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <RadioButton.Content>
+                <Image Source="/Images maps/fondTombe.png" Width="150" Height="150"/>
+            </RadioButton.Content>
+        </RadioButton>
+
+        <RadioButton x:Name="sorcierglace" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="549,0,0,0" >
+            <RadioButton.Content>
+                <Image Source="/Images maps/FondGlace.png" Width="150" Height="150"/>
+            </RadioButton.Content>
+        </RadioButton>
+        <Button x:Name="butRetour" Content="Retour" HorizontalAlignment="Left" Margin="57,0,0,34" VerticalAlignment="Bottom" RenderTransformOrigin="0.549,-1.067" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" FontSize="20"/>
     </Grid>
 </UserControl>
