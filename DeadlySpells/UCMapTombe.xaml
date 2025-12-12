@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="DeadlySpells.UCMapTombe"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DeadlySpells"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="179,10,0,0">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images maps/fondTombe.png"/>
+        </Grid.Background>
+        <Image Margin="58,269,59,85" Source="/Images maps/SolTombe.png" Stretch="Fill"/>
+        <Image Margin="0,355,449,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
+        <Image Margin="167,355,282,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
+        <Image Margin="310,355,139,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
+        <Image Margin="449,355,0,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
+
+    </Grid>
+</UserControl>
