@@ -23,6 +23,7 @@ namespace DeadlySpells
         public UCChoixPerso()
         {
             InitializeComponent();
+            
         }
 
         private void rbbutRetour_Click(object sender, RoutedEventArgs e)
