@@ -6,14 +6,15 @@
              xmlns:local="clr-namespace:DeadlySpells"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Margin="179,10,0,0">
         <Grid.Background>
             <ImageBrush ImageSource="/Images maps/fondTombe.png"/>
         </Grid.Background>
-        <Image Margin="28,229,28,95" Source="/Images maps/SolTombe.png" Stretch="Fill"/>
+        <Image Margin="58,269,59,85" Source="/Images maps/SolTombe.png" Stretch="Fill"/>
         <Image Margin="0,355,449,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
-        <Image Margin="334,355,115,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
-        <Image Margin="671,355,-222,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
+        <Image Margin="167,355,282,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
+        <Image Margin="310,355,139,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
+        <Image Margin="449,355,0,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
 
     </Grid>
 </UserControl>
