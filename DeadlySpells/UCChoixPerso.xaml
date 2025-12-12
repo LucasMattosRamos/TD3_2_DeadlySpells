@@ -66,7 +66,7 @@
 
         <TextBox Margin="114,163,526,245" TextWrapping="Wrap" Text="  JOUEUR 1" Background="#FFFFDE00" BorderBrush="{x:Null}" Foreground="#FF0047D2" SelectionTextBrush="{x:Null}" SelectionBrush="{x:Null}" FontSize="28" Height="42" Width="160"/>
 
-        <TextBox Margin="523,109,117,299" TextWrapping="Wrap" Text="  JOUEUR 2" Background="#FFFFDE00" BorderBrush="{x:Null}" Foreground="#FF0047D2" SelectionTextBrush="{x:Null}" SelectionBrush="{x:Null}" Width="160" Height="42" FontSize="28"/>
+        <TextBox Margin="523,163,117,245" TextWrapping="Wrap" Text="  JOUEUR 2" Background="#FFFFDE00" BorderBrush="{x:Null}" Foreground="#FF0047D2" SelectionTextBrush="{x:Null}" SelectionBrush="{x:Null}" Width="160" Height="42" FontSize="28"/>
         <Button x:Name="butRetour" Content="RETOUR" 
                 HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="50,0,0,30"
                 BorderBrush="{x:Null}" Foreground="Black" FontSize="20" Background="#FFFFE012" FontFamily="Goudy Old Style" Height="55" Width="120" FontWeight="Bold"/>
