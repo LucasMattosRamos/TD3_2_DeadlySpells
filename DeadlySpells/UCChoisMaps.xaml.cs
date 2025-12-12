@@ -20,11 +20,37 @@ namespace DeadlySpells
     /// </summary>
     public partial class UCChoisMaps : UserControl
     {
+
+
+
         public UCChoisMaps()
         {
             InitializeComponent();
         }
 
-        
+        private void butJouer_Click(object sender, RoutedEventArgs e)
+        {
+/*
+            bool MapFeu = RadMapFeu.Checked;
+            bool MapGlace = false;
+            bool MapTombe= false;
+
+
+
+            if (MapFeu == true)
+            {
+
+            }
+            else if (MapGlace == true)
+            {
+
+            }
+            else 
+            {
+            
+            }
+
+            */
+        }
     }
 }

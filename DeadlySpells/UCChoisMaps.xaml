@@ -7,23 +7,23 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Button x:Name="butJouer" Content="JOUER" HorizontalAlignment="Left" Margin="678,375,0,0" VerticalAlignment="Top"  Background="#FFFFE012" FontFamily="Goudy Old Style" Height="38" Width="77" FontSize="20"/>
+        <Button x:Name="butJouer" Content="JOUER" HorizontalAlignment="Left" Margin="678,375,0,0" VerticalAlignment="Top"  Background="#FFFFE012" FontFamily="Goudy Old Style" Height="38" Width="77" FontSize="20" Click="butJouer_Click"/>
 
         <Label x:Name="labConsigne" Content="CHOIX DES MAPS" Margin="242,38,60,357" Foreground="White" FontSize="42" FontFamily="Goudy Old Style" Width="498" Height="55"/>
 
-        <RadioButton x:Name="MapFeu" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="105,0,0,0">
+        <RadioButton x:Name="RadMapFeu" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="105,0,0,0">
             <RadioButton.Content>
                 <Image Source="/Images maps/AffFeu.png" Width="138" Height="150"/>
             </RadioButton.Content>
         </RadioButton>
 
-        <RadioButton x:Name="MapTombe" Width="150" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <RadioButton x:Name="RadMapTombe" Width="150" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
             <RadioButton.Content>
                 <Image Source="/Images maps/AffTombe.png" Width="150" Height="150"/>
             </RadioButton.Content>
         </RadioButton>
 
-        <RadioButton x:Name="MapGlace" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="549,0,0,0" >
+        <RadioButton x:Name="RadMapGlace" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="549,0,0,0" >
             <RadioButton.Content>
                 <Image Source="/Images maps/AffGlace.png" Width="150" Height="150"/>
             </RadioButton.Content>
