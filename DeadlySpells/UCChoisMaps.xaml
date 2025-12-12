@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Button x:Name="butJouer" Content="Jouer" HorizontalAlignment="Left" Margin="678,375,0,0" VerticalAlignment="Top" Height="38" Width="77" FontSize="20"/>
+        <Button x:Name="butJouer" Content="JOUER" HorizontalAlignment="Left" Margin="678,375,0,0" VerticalAlignment="Top"  Background="#FFFFE012" FontFamily="Goudy Old Style" Height="38" Width="77" FontSize="20"/>
 
         <Label x:Name="labConsigne" Content="CHOIX DES MAPS" Margin="242,38,60,357" Foreground="White" FontSize="42" FontFamily="Goudy Old Style" Width="498" Height="55"/>
 

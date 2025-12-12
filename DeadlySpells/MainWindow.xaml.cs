@@ -53,6 +53,8 @@ namespace DeadlySpells
 
             // UCChoixPerso -> UCChoisMaps
             uc.butChoixMap.Click += AfficherChoisMaps;
+            // UCChoixPerso -> UCChoisMaps
+            uc.butRetour.Click += AfficherDemarrageRegle;
         }
 
         /// <summary>
@@ -64,7 +66,7 @@ namespace DeadlySpells
             ZoneJeu.Content = uc;
 
             // UCReglesJeu -> UCChoixPerso
-            uc.butPassez.Click += AfficherChoixPerso;
+            uc.butLancer.Click += AfficherChoixPerso;
             // UCChoixPerso -> UCReglesJeu
             uc.butRetour.Click += AfficherDemarrageRegle;
 
@@ -86,6 +88,7 @@ namespace DeadlySpells
 
             // UCChoisMaps -> UCChoixPerso
             uc.butJouer.Click += AfficherJeu;
+
             // UCChoisMaps -> UCChoixPerso
             uc.butRetour.Click += AfficherChoixPerso; 
         }
