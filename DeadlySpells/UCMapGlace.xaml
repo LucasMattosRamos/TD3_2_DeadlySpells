@@ -12,7 +12,8 @@
         </Grid.Background>
         <Image Margin="64,155,64,50" Source="/Images maps/SolGlace.png" Stretch="Fill"/>
         <Image Margin="-35,278,312,-20" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
-        <Image Margin="464,278,-187,-20" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
+        <Image Margin="114,278,162,-20" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
+        <Image Margin="467,278,-191,-20" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
 
     </Grid>
 </UserControl>
