@@ -25,7 +25,11 @@ namespace DeadlySpells
             InitializeComponent();
         }
 
-        private void butRetour_Click(object sender, RoutedEventArgs e)
+        private void rbbutRetour_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void butSuivant_Click(object sender, RoutedEventArgs e)
         {
 
         }

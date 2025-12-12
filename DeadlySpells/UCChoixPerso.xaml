@@ -12,7 +12,7 @@
         <Button x:Name="butSuivant" Content="SUIVANT" Margin="623,416,57,-21" Width="120" Background="#FFFFDD12" FontSize="20" FontFamily="Goudy Old Style" FontWeight="Bold" Height="55"/>
 
         <TextBlock Margin="179,29,179,365" TextWrapping="Wrap" FontFamily="Goudy Old Style" FontSize="42" Foreground="White" FontWeight="Bold" Width="442"><Run Language="fr-fr" Text="CHOIX DES SORCIERS"/></TextBlock>
-        <ComboBox x:Name="cbJ1" Margin="117,313,529,87" Height="50" Width="154">
+        <ComboBox x:Name="cbJ1" Margin="117,246,529,154" Height="50" Width="154">
             <!-- FEU -->
             <ComboBoxItem>
                 <StackPanel Orientation="Horizontal">
@@ -38,7 +38,7 @@
             </ComboBoxItem>
         </ComboBox>
 
-        <ComboBox x:Name="cbJ2" Margin="523,313,117,87" Height="50" Width="154">
+        <ComboBox x:Name="cbJ2" Margin="529,246,117,154" Height="50" Width="154">
             <!-- FEU -->
             <ComboBoxItem>
                 <StackPanel Orientation="Horizontal">
@@ -64,9 +64,9 @@
             </ComboBoxItem>
         </ComboBox>
 
-        <TextBox Margin="117,109,529,299" TextWrapping="Wrap" Text="  JOUEUR 1" Background="#FFFFDE00" BorderBrush="{x:Null}" Foreground="#FF0047D2" SelectionTextBrush="{x:Null}" SelectionBrush="{x:Null}" FontSize="28" Height="42" Width="160"/>
+        <TextBox Margin="114,163,526,245" TextWrapping="Wrap" Text="  JOUEUR 1" Background="#FFFFDE00" BorderBrush="{x:Null}" Foreground="#FF0047D2" SelectionTextBrush="{x:Null}" SelectionBrush="{x:Null}" FontSize="28" Height="42" Width="160"/>
 
-        <TextBox Margin="523,109,117,299" TextWrapping="Wrap" Text="  JOUEUR 2" Background="#FFFFDE00" BorderBrush="{x:Null}" Foreground="#FF0047D2" SelectionTextBrush="{x:Null}" SelectionBrush="{x:Null}" Width="160" Height="42" FontSize="28"/>
+        <TextBox Margin="526,163,114,245" TextWrapping="Wrap" Text="  JOUEUR 2" Background="#FFFFDE00" BorderBrush="{x:Null}" Foreground="#FF0047D2" SelectionTextBrush="{x:Null}" SelectionBrush="{x:Null}" Width="160" Height="42" FontSize="28"/>
         <Button x:Name="butRetour" Content="RETOUR" Margin="57,416,623,-21" RenderTransformOrigin="0.549,-1.067" BorderBrush="{x:Null}" Foreground="Black" FontSize="20" Background="#FFFFE012" FontFamily="Goudy Old Style" Height="55" Width="120" FontWeight="Bold"/>
     </Grid>
 </UserControl>
