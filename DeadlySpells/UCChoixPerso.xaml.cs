@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static DeadlySpells.MainWindow;
 
 namespace DeadlySpells
 {
@@ -20,14 +21,20 @@ namespace DeadlySpells
     /// </summary>
     public partial class UCChoixPerso : UserControl
     {
+        private MageType? _mageJ1;
+        private MageType? _mageJ2;
+
         public UCChoixPerso()
         {
             InitializeComponent();
         }
 
+
         private void butRetour_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+
     }
 }
