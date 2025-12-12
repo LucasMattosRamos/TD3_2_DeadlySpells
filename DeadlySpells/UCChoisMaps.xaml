@@ -7,27 +7,27 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Button x:Name="butJouer" Content="JOUER" HorizontalAlignment="Left" Margin="678,375,0,0" VerticalAlignment="Top"  Background="#FFFFE012" FontFamily="Goudy Old Style" Height="38" Width="77" FontSize="20" Click="butJouer_Click"/>
+        <Button x:Name="butJouer" Content="JOUER" HorizontalAlignment="Left" Margin="678,375,0,0" VerticalAlignment="Top"  Background="#FFFFE012" FontFamily="Goudy Old Style" Height="38" Width="77" FontSize="20"/>
 
         <Label x:Name="labConsigne" Content="CHOIX DES MAPS" Margin="242,38,60,357" Foreground="White" FontSize="42" FontFamily="Goudy Old Style" Width="498" Height="55"/>
 
         <RadioButton x:Name="RadMapFeu" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="105,0,0,0">
             <RadioButton.Content>
-                <Image Source="/Images maps/AffFeu.png" Width="138" Height="150"/>
+                <Image Source="/Images maps/AffFeu.png" Width="181" Height="180"/>
             </RadioButton.Content>
         </RadioButton>
 
         <RadioButton x:Name="RadMapTombe" Width="150" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
             <RadioButton.Content>
-                <Image Source="/Images maps/AffTombe.png" Width="150" Height="150"/>
+                <Image Source="/Images maps/AffTombe.png" Width="180" Height="180"/>
             </RadioButton.Content>
         </RadioButton>
 
         <RadioButton x:Name="RadMapGlace" Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="549,0,0,0" >
             <RadioButton.Content>
-                <Image Source="/Images maps/AffGlace.png" Width="150" Height="150"/>
+                <Image Source="/Images maps/AffGlace.png" Width="181" Height="180"/>
             </RadioButton.Content>
         </RadioButton>
-        <Button x:Name="butRetour" Content="RETOUR" HorizontalAlignment="Left" Margin="44,0,0,29" VerticalAlignment="Bottom" RenderTransformOrigin="0.549,-1.067" BorderBrush="{x:Null}" Foreground="Black" FontSize="20" Background="#FFFFE012" FontFamily="Goudy Old Style" Height="38" Width="106"/>
+        <Button x:Name="butRetour" Content="RETOUR" Margin="57,416,623,-21" RenderTransformOrigin="0.549,-1.067" BorderBrush="{x:Null}" Foreground="Black" FontSize="20" Background="#FFFFE012" FontFamily="Goudy Old Style" Height="55" Width="120"/>
     </Grid>
 </UserControl>
