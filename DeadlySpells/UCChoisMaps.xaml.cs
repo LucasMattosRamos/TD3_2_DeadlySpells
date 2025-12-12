@@ -25,6 +25,14 @@ namespace DeadlySpells
             InitializeComponent();
         }
 
-        
+        private void butJouer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MapFeu_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
