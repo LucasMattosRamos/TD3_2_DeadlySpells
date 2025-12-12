@@ -16,6 +16,8 @@ namespace DeadlySpells
 
     public partial class MainWindow : Window
     {
+        // C'est LA variable importante : elle stocke le texte "Feu", "Glace" ou "Tombe"
+        public static string ChoixMap { get; set; } = "";
 
         public MainWindow()
         {
@@ -23,51 +25,40 @@ namespace DeadlySpells
             AfficheDemarrage();
         }
 
+        public enum MageType
+        {
+            Feu,
+            Glace,
+            Orage
+        }
+
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             // rien pour l'instant
         }
 
-        /// <summary>
-        /// Affiche l'écran de démarrage (UCDemarrage)
-        /// </summary>
         private void AfficheDemarrage()
         {
             UCDemarrage uc = new UCDemarrage();
             ZoneJeu.Content = uc;
-
-            // UCDemarrage -> UCReglesJeu
             uc.butRegles.Click += AfficherReglesJeu;
-
-            // UCDemarrage -> UCChoixPerso
             uc.butLancer.Click += AfficherChoixPerso;
         }
 
-        /// <summary>
-        /// UCDemarrage ou UCReglesJeu -> UCChoixPerso
-        /// </summary>
         private void AfficherChoixPerso(object sender, RoutedEventArgs e)
         {
             UCChoixPerso uc = new UCChoixPerso();
             ZoneJeu.Content = uc;
-
-            // UCChoixPerso -> UCChoisMaps
             uc.butSuivant.Click += AfficherChoisMaps;
             uc.butRetour.Click += AfficherReglesJeu;
         }
 
-        /// <summary>
-        /// UCDemarrage -> UCReglesJeu
-        /// </summary>
         private void AfficherReglesJeu(object sender, RoutedEventArgs e)
         {
             UCReglesJeu uc = new UCReglesJeu();
             ZoneJeu.Content = uc;
-
-            // UCReglesJeu -> UCChoixPerso
             uc.butSuivant.Click += AfficherChoixPerso;
             uc.butRetour.Click += AfficherDemarrageRegle;
-
         }
 
         private void AfficherDemarrageRegle(object sender, RoutedEventArgs e)
@@ -75,20 +66,18 @@ namespace DeadlySpells
             AfficheDemarrage();
         }
 
-
-        /// <summary>
-        /// UCChoisMaps -> UCJeu ++ retour UCChoisMaps -> UCChoixPerso
-        /// </summary>
         private void AfficherChoisMaps(object sender, RoutedEventArgs e)
         {
             UCChoisMaps uc = new UCChoisMaps();
             ZoneJeu.Content = uc;
 
-            // UCChoisMaps -> UCChoixPerso
-            uc.butJouer.Click += AfficherJeu;
+            // Important : On remet le choix à zéro quand on arrive sur la page
+            ChoixMap = "";
 
-            // UCChoisMaps -> UCChoixPerso
-            uc.butRetour.Click += AfficherChoixPerso; 
+            uc.butRetour.Click += AfficherChoixPerso;
+
+            // Ligne CRUCIALE : Relie le clic bouton à la fonction de chargement
+            uc.butJouer.Click += AfficheMap;
         }
 
         private void AfficherJeu(object sender, RoutedEventArgs e)
@@ -97,8 +86,31 @@ namespace DeadlySpells
             ZoneJeu.Content = uc;
         }
 
+        public void AfficheMap(object sender, RoutedEventArgs e)
+        {
+            // Sécurité : Si le joueur n'a rien sélectionné
+            if (string.IsNullOrEmpty(ChoixMap))
+            {
+                MessageBox.Show("Veuillez sélectionner une carte !");
+                return;
+            }
 
-
+            // Chargement de la bonne carte selon le TEXTE stocké
+            if (ChoixMap == "Feu")
+            {
+                UCMapFeu uc = new UCMapFeu();
+                ZoneJeu.Content = uc;
+            }
+            else if (ChoixMap == "Glace")
+            {
+                UCMapGlace uc = new UCMapGlace();
+                ZoneJeu.Content = uc;
+            }
+            else if (ChoixMap == "Tombe")
+            {
+                UCMapTombe uc = new UCMapTombe();
+                ZoneJeu.Content = uc;
+            }
+        }
     }
-
 }

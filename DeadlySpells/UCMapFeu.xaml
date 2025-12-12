@@ -7,9 +7,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        
         <Grid.Background>
             <ImageBrush ImageSource="/Images maps/Fond Feu.png"/>
         </Grid.Background>
+        
         <Image Margin="80,141,113,-38" Source="/Images maps/SolFeu.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
@@ -20,6 +22,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
+        
         <Image Margin="298,288,118,0" Source="/Images maps/epinesFeu.png" Stretch="Fill"/>
         <Image Margin="682,288,-298,0" Source="/Images maps/epinesFeu.png" Stretch="Fill"/>
         <Image Margin="-53,288,469,0" Source="/Images maps/epinesFeu.png" Stretch="Fill"/>
