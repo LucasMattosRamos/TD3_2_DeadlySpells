@@ -77,22 +77,27 @@ namespace DeadlySpells
 
 
         /// <summary>
-        /// UCChoixPerso -> UCChoisMaps
+        /// UCChoisMaps -> UCJeu ++ retour UCChoisMaps -> UCChoixPerso
         /// </summary>
         private void AfficherChoisMaps(object sender, RoutedEventArgs e)
         {
             UCChoisMaps uc = new UCChoisMaps();
             ZoneJeu.Content = uc;
+
+            // UCChoisMaps -> UCChoixPerso
             uc.butJouer.Click += AfficherJeu;
-            uc.butRetour.Click += AfficherChoixPerso;
+            // UCChoisMaps -> UCChoixPerso
+            uc.butRetour.Click += AfficherChoixPerso; 
         }
 
         private void AfficherJeu(object sender, RoutedEventArgs e)
         {
             UCJeu uc = new UCJeu();
             ZoneJeu.Content = uc;
-            
         }
-        
+
+
+
     }
+
 }
