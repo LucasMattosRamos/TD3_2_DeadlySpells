@@ -30,27 +30,27 @@ namespace DeadlySpells
 
         private void butJouer_Click(object sender, RoutedEventArgs e)
         {
-/*
-            bool MapFeu = RadMapFeu.Checked;
-            bool MapGlace = false;
-            bool MapTombe= false;
+            /*
+               bool MapFeu = RadMapFeu.Checked;
+               bool MapGlace = false;
+               bool MapTombe= false;
 
 
 
-            if (MapFeu == true)
-            {
+               if (MapFeu == true)
+               {
 
-            }
-            else if (MapGlace == true)
-            {
+               }
+               else if (MapGlace == true)
+               {
 
-            }
-            else 
-            {
-            
-            }
+               }
+               else 
+               {
 
-            */
+               }
+
+               */
         }
     }
 }
