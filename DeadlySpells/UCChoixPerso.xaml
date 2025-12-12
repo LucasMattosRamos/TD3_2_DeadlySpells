@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Button x:Name="butChoixMap" Content="MAPS" Margin="626,395,50,0" Width="120" Background="#FFFFDD12" FontSize="20" Click="butChoixMap_Click" FontFamily="Goudy Old Style" FontWeight="Bold" Height="55"/>
+        <Button x:Name="butSuivant" Content="SUIVANT" Margin="626,395,50,0" Width="120" Background="#FFFFDD12" FontSize="20" Click="butChoixMap_Click" FontFamily="Goudy Old Style" FontWeight="Bold" Height="55"/>
         <TextBlock Margin="151,36,151,358" TextWrapping="Wrap" Height="55" Foreground="#FFFBF4F4" FontSize="48" FontFamily="Goudy Old Style" Width="498"><Run Text="C"/><Run Language="fr-fr" Text="HOIX DES SORCIERS"/></TextBlock>
         <ComboBox Margin="112,287,488,113" Height="50" Width="200" FontSize="32" FontFamily="Goudy Old Style">
 

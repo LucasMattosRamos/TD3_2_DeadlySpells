@@ -15,7 +15,7 @@
         </StackPanel>
         <Image Margin="125,72,125,72" Source="/Images/RegleEcrite.png" Stretch="Fill" Height="307" Width="551"/>
         <Image Margin="-29,-24,626,346" Source="/Images/REGLESDUJEU.png" Stretch="Fill" Width="203" Height="128"/>
-        <Button x:Name="butLancer" Content="LANCER" Margin="642,395,38,0" RenderTransformOrigin="0.549,-1.067" BorderBrush="{x:Null}" Background="#FFFFE012" Foreground="Black" FontSize="20" FontFamily="Goudy Old Style" Height="55" Width="120" FontWeight="Bold"/>
+        <Button x:Name="butSuivant" Content="SUIVANT" Margin="642,395,38,0" RenderTransformOrigin="0.549,-1.067" BorderBrush="{x:Null}" Background="#FFFFE012" Foreground="Black" FontSize="20" FontFamily="Goudy Old Style" Height="55" Width="120" FontWeight="Bold"/>
 
         <Button x:Name="butRetour" Content="RETOUR" Margin="54,395,626,0" RenderTransformOrigin="0.549,-1.067" BorderBrush="{x:Null}" Foreground="Black" FontSize="20" Background="#FFFFE012" FontFamily="Goudy Old Style" Height="55" Width="120" FontWeight="Bold"/>
        
