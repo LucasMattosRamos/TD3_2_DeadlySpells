@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:DeadlySpells"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Images maps/FondGlace.png"/>
@@ -17,5 +18,9 @@
         <Image Margin="-6,274,678,-16" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
         <Image Margin="672,274,0,-16" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
 
+        <Image x:Name="imgJoueur1" Margin="50,100,0,0" Width="100" Height="100"/>
+
+        <!-- Joueur 2 -->
+        <Image x:Name="imgJoueur2" Margin="650,100,0,0" Width="100" Height="100"/>
     </Grid>
 </UserControl>

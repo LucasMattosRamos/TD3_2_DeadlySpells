@@ -28,5 +28,8 @@
         <Image Margin="87,288,400,0" Source="/Images maps/epinesFeu.png" Stretch="Fill"/>
         <Image Margin="0,288,677,0" Source="/Images maps/epinesFeu.png" Stretch="Fill"/>
 
+        <Image x:Name="imgJoueur1" Margin="-150,100,0,0" Width="100" Height="100"/>
+        <Image x:Name="imgJoueur2" Margin="150,100,0,0" Width="100" Height="100"/>
+
     </Grid>
 </UserControl>

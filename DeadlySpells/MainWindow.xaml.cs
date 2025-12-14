@@ -18,6 +18,8 @@ namespace DeadlySpells
     {
         // C'est LA variable importante : elle stocke le texte "Feu", "Glace" ou "Tombe"
         public static string ChoixMap { get; set; } = "";
+        public static string Joueur1Choix { get; set; } = "";
+        public static string Joueur2Choix { get; set; } = "";
 
         public MainWindow()
         {
@@ -36,7 +38,7 @@ namespace DeadlySpells
         {
             // rien pour l'instant
         }
-
+        
         private void AfficheDemarrage()
         {
             UCDemarrage uc = new UCDemarrage();
