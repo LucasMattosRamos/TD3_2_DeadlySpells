@@ -16,5 +16,6 @@
         <Image Margin="310,355,139,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
         <Image Margin="449,355,0,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
 
+        <Button x:Name="butMenu" Content="Menu" Width="80" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" />
     </Grid>
 </UserControl>

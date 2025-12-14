@@ -10,10 +10,13 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Images maps/FondGlace.png"/>
         </Grid.Background>
-        <Image Margin="64,155,64,50" Source="/Images maps/SolGlace.png" Stretch="Fill"/>
-        <Image Margin="-35,278,312,-20" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
-        <Image Margin="114,278,162,-20" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
-        <Image Margin="467,278,-191,-20" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
+        <Image Margin="64,203,64,2" Source="/Images maps/SolGlace.png" Stretch="Fill"/>
+        <Image Margin="98,274,312,-16" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
+        <Image Margin="98,274,178,-16" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
+        <Image Margin="293,274,105,-16" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
+        <Image Margin="-6,274,678,-16" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
+        <Image Margin="672,274,0,-16" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
 
+        <Button x:Name="butMenu" Content="Menu" Width="80" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" />
     </Grid>
 </UserControl>

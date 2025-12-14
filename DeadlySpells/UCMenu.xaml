@@ -6,7 +6,21 @@
              xmlns:local="clr-namespace:DeadlySpells"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="#80000000">
+        
+        <Border Background="#FF1F1F2E"  CornerRadius="10" Padding="20" Width="300"  HorizontalAlignment="Center"  VerticalAlignment="Center">
+            <StackPanel>
+
+              
+                <TextBlock Text="Menu" FontSize="24" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                <Button x:Name="butRetourPartie" Content="Reprendre la partie"  Margin="0,0,0,10" Height="35" />
+
+                <Button x:Name="butAccueil" Content="Retour à l'accueil" Margin="0,0,0,20" Height="35" />
+
+                <TextBlock Text="Volume"  Foreground="White"  Margin="0,0,0,5"/>
+
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>
