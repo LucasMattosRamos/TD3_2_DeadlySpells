@@ -27,6 +27,7 @@ namespace DeadlySpells
         public UCChoixPerso()
         {
             InitializeComponent();
+            
         }
 
 

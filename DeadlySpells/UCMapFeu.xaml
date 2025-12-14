@@ -11,9 +11,8 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Images maps/Fond Feu.png"/>
         </Grid.Background>
-
-        <Image Margin="82,195,111,-92" Source="/Images maps/SolFeu.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
-
+        
+        <Image Margin="80,141,113,-38" Source="/Images maps/SolFeu.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
