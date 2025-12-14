@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -39,5 +40,7 @@ namespace DeadlySpells
             else if (MainWindow.Joueur2Choix == "Orage")
                 imgJoueur2.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard/1_IDLE_000.png", UriKind.Relative));
         }
+
+        
     }
 }

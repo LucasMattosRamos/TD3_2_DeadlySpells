@@ -52,7 +52,7 @@ namespace DeadlySpells
             UCChoixPerso uc = new UCChoixPerso();
             ZoneJeu.Content = uc;
             uc.butSuivant.Click += AfficherChoisMaps;
-            uc.butRetour.Click += AfficherReglesJeu;
+            uc.butRetour.Click += AfficherDemarrageRegle;
         }
 
         private void AfficherReglesJeu(object sender, RoutedEventArgs e)
