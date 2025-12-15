@@ -9,11 +9,15 @@
     <Grid>
 
 
-    <Image Margin="150,-34,150,-32" Source="/Images/Deadly Spells ecrit.png" Stretch="Fill"/>
+        <Image Margin="150,-34,150,-32" Source="/Images/Deadly Spells ecrit.png" Stretch="Fill"/>
         <Button x:Name="butLancer" Content="LANCER"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,50,30" Background="#FFFFE012" FontFamily="Goudy Old Style" Height="55" Width="120" FontSize="20" FontWeight="Bold"/>
         <Button x:Name="butRegles" Content="REGLES"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="50,0,0,30" BorderBrush="{x:Null}" Foreground="Black" FontSize="20" Background="#FFFFE012" FontFamily="Goudy Old Style" Height="55" Width="120" FontWeight="Bold"/>
+        <Button x:Name="butQuitter" Content="QUITTER"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                Margin="0,0,0,30"
+                BorderBrush="{x:Null}" Foreground="Black" FontSize="20"
+                Background="#FFFFE012" FontFamily="Goudy Old Style" Height="55"
+                Width="120" FontWeight="Bold" Click="butQuitter_Click"/>
 
-
-
-   </Grid>
+    </Grid>
 </UserControl>

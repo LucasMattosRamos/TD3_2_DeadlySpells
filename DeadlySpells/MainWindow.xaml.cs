@@ -134,8 +134,5 @@ namespace DeadlySpells
             uc.butAccueil.Click += AfficherDemarrageRegle;
         }
 
-
-
-
     }
 }
