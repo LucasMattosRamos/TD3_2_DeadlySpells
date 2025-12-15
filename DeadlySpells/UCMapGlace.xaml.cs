@@ -114,6 +114,10 @@ namespace DeadlySpells
                     }
                     break;
 
+                case Key.Space:
+                    LancerSort(imgJoueur1, MainWindow.Joueur1Choix);
+                    break;
+
                 // --- Joueur 2 : flèches gauche / droite / haut ---
                 case Key.Right:
                     Canvas.SetLeft(imgJoueur2, positionJ2 + VitesseDeplacement);
@@ -131,6 +135,10 @@ namespace DeadlySpells
                         vitesseVerticaleJ2 = VitesseSaut;
                         estAuSolJ2 = false;
                     }
+                    break;
+
+                case Key.Enter:
+                    LancerSort(imgJoueur2, MainWindow.Joueur2Choix);
                     break;
             }
         }
@@ -192,6 +200,30 @@ namespace DeadlySpells
                 vitesseVerticale = 0;
                 estAuSol = true;
             }
+        }
+        private void LancerSort(Image joueur, string choixSorcier)
+        {
+            string dossier;
+
+            if (choixSorcier == "Feu")
+                dossier = "wizard_fire";
+            else if (choixSorcier == "Glace")
+                dossier = "wizard_ice";
+            else
+                dossier = "wizard"; // par défaut (Orage)
+
+            int frame = 0;
+            DispatcherTimer sort = new DispatcherTimer();
+            sort.Interval = TimeSpan.FromMilliseconds(100);
+            sort.Tick += (s, e) =>
+            {
+                string path = $"/ImagesSorcier/PNG/{dossier}/5_ATTACK_{frame:D3}.png";
+                joueur.Source = new BitmapImage(new Uri(path, UriKind.Relative));
+                frame++;
+
+                if (frame > 6) sort.Stop();
+            };
+            sort.Start();
         }
     }
 }
