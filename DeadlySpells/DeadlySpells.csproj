@@ -266,4 +266,10 @@
     <Resource Include="Images\REGLESDUJEU.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Son\MusiqueFond.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
