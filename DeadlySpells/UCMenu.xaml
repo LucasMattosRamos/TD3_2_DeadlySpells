@@ -19,6 +19,8 @@
                 <Button x:Name="butAccueil" Content="Retour à l'accueil" Margin="0,0,0,20" Height="35" />
 
                 <TextBlock Text="Volume"  Foreground="White"  Margin="0,0,0,5"/>
+                <Slider x:Name="sliderVolume" Minimum="0" Maximum="1" Value="0.5" TickFrequency="0.1"
+        IsSnapToTickEnabled="True" Margin="0,0,0,10" Height="30"/>
 
             </StackPanel>
         </Border>

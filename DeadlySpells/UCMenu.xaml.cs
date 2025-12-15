@@ -23,6 +23,7 @@ namespace DeadlySpells
         public UCMenu()
         {
             InitializeComponent();
+
         }
     }
 }

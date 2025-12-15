@@ -137,6 +137,7 @@
     <None Remove="Images\RegleDeJeu.png" />
     <None Remove="Images\RegleEcrite.png" />
     <None Remove="Images\REGLESDUJEU.png" />
+    <None Remove="Son\Musique-Mystère-Epique-Suspens-Magie-Action-Musique-Libre-de-Droit.wav" />
   </ItemGroup>
 
   <ItemGroup>
