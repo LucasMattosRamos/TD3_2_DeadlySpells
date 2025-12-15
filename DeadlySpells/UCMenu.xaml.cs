@@ -25,5 +25,12 @@ namespace DeadlySpells
             InitializeComponent();
 
         }
+        private void sliderVolume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (MainWindow.musique != null)
+            {
+                MainWindow.musique.Volume = sliderVolume.Value;
+            }
+        }
     }
 }
