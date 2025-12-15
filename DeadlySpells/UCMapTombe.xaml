@@ -6,21 +6,43 @@
              xmlns:local="clr-namespace:DeadlySpells"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid HorizontalAlignment="Center" Width="800">
-        <Grid.Background>
-            <ImageBrush ImageSource="/Images maps/fondTombe.png"/>
-        </Grid.Background>
-        <Image Margin="58,332,58,22" Source="/Images maps/SolTombe.png" Stretch="Fill"/>
-        <Image Margin="0,355,449,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
-        <Image Margin="167,355,282,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
-        <Image Margin="310,355,139,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
-        <Image Margin="449,355,0,-19" Source="/Images maps/epinesTombe.png" Stretch="Fill"/>
 
-        <Image x:Name="imgJoueur1" Margin="50,100,0,0" Width="100" Height="100"/>
+    <Viewbox Stretch="Uniform">
 
-        <!-- Joueur 2 -->
-        <Image x:Name="imgJoueur2" Margin="650,100,0,0" Width="100" Height="100"/>
-        
-        <Button x:Name="butMenu" Content="Menu" Width="80" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" />
-    </Grid>
+        <Canvas x:Name="MapTombe" Width="800" Height="450">
+
+            <Canvas.Background>
+                <ImageBrush ImageSource="/Images maps/fondTombe.png" Stretch="Fill"/>
+            </Canvas.Background>
+
+            <Image Source="/Images maps/SolTombe.png"
+                   Canvas.Left="58" Canvas.Top="259"
+                   Width="684" Height="96"
+                   Stretch="Fill" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+            <Image Source="/Images maps/epinesTombe.png" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+            <Image x:Name="imgJoueur1"
+                   Canvas.Left="126" Canvas.Top="209"
+                   Width="100" Height="100"
+                   Panel.ZIndex="10"/>
+
+            <Image x:Name="imgJoueur2"
+                   Canvas.Left="555" Canvas.Top="209"
+                   Width="100" Height="100"
+                   Panel.ZIndex="10"/>
+
+            <Button x:Name="butMenu"
+                    Content="Menu" Width="80" Height="30"
+                    Canvas.Right="10" Canvas.Top="10"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"
+                    Panel.ZIndex="100" />
+            <Image Source="/Images maps/epinesTombe.png" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="154"/>
+            <Image Source="/Images maps/epinesTombe.png" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2" Canvas.Left="288" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Image Source="/Images maps/epinesTombe.png" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2" Canvas.Left="429" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Image Source="/Images maps/epinesTombe.png" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2" Canvas.Left="574" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Image Source="/Images maps/epinesTombe.png" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2" Canvas.Left="710" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        </Canvas>
+    </Viewbox>
 </UserControl>

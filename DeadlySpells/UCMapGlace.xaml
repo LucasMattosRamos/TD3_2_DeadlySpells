@@ -5,24 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DeadlySpells"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Images maps/FondGlace.png"/>
-        </Grid.Background>
-        <Image Margin="64,203,64,2" Source="/Images maps/SolGlace.png" Stretch="Fill"/>
-        <Image Margin="98,274,312,-16" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
-        <Image Margin="98,274,178,-16" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
-        <Image Margin="293,274,105,-16" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
-        <Image Margin="-6,274,678,-16" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
-        <Image Margin="672,274,0,-16" Source="/Images maps/epinesGlace.png" Stretch="Fill"/>
+             d:DesignHeight="1080" d:DesignWidth="1920">
 
-        <Image x:Name="imgJoueur1" Margin="50,100,0,0" Width="100" Height="100"/>
+    <Viewbox Stretch="Uniform">
 
-        <!-- Joueur 2 -->
-        <Image x:Name="imgJoueur2" Margin="650,100,0,0" Width="100" Height="100"/>
-        <Button x:Name="butMenu" Content="Menu" Width="80" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" />
+        <Canvas x:Name="MapGlace" Width="1920" Height="1080">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/Images maps/FondGlace.png" Stretch="Fill"/>
+            </Canvas.Background>
 
-    </Grid>
+            <Image Source="/Images maps/epinesGlace.png" Width="429" Height="359" Canvas.Top="750" Stretch="Fill" Panel.ZIndex="5" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="-30"/>
+
+            <Image Source="/Images maps/SolGlace.png" Canvas.Left="150" Canvas.Top="327" Width="1620" Height="600" Stretch="Fill" Panel.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            <Image x:Name="imgJoueur1" Canvas.Left="299" Canvas.Top="494" Width="200" Height="200" Panel.ZIndex="10"/>
+            <Image x:Name="imgJoueur2" Canvas.Left="1416" Canvas.Top="494" Width="200" Height="200" Panel.ZIndex="10"/>
+
+            <Button x:Name="butMenu" Content="Menu" Width="100" Height="40" Canvas.Right="30" Canvas.Top="30"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" FontSize="18" Panel.ZIndex="100"/>
+            <Image Source="/Images maps/epinesGlace.png" Width="429" Height="359" Canvas.Top="750" Stretch="Fill" Panel.ZIndex="5" Canvas.Left="354" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Image Source="/Images maps/epinesGlace.png" Width="428" Height="359" Canvas.Top="750" Stretch="Fill" Panel.ZIndex="5" Canvas.Left="746" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image Source="/Images maps/epinesGlace.png" Width="428" Height="359" Canvas.Top="750" Stretch="Fill" Panel.ZIndex="5" Canvas.Left="1139" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Image Source="/Images maps/epinesGlace.png" Width="428" Height="359" Canvas.Top="750" Stretch="Fill" Panel.ZIndex="5" Canvas.Left="1516" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        </Canvas>
+    </Viewbox>
 </UserControl>

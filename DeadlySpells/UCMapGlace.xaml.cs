@@ -21,22 +21,42 @@ namespace DeadlySpells
     /// </summary>
     public partial class UCMapGlace : UserControl
     {
+
+        private const double VitesseDeplacement = 6;     // déplacement par tick
+        private const double VitesseProjectile = 15;     // déplacement des projectiles
+
+
+
+
+
+
+
+
+
+
+
+
         public UCMapGlace()
         {
             InitializeComponent();
             // Joueur 1
             if (MainWindow.Joueur1Choix == "Feu")
                 imgJoueur1.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard_fire/1_IDLE_000.png", UriKind.Relative));
+
             else if (MainWindow.Joueur1Choix == "Glace")
                 imgJoueur1.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard_ice/1_IDLE_000.png", UriKind.Relative));
+
             else if (MainWindow.Joueur1Choix == "Orage")
                 imgJoueur1.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard/1_IDLE_000.png", UriKind.Relative));
+
 
             // Joueur 2
             if (MainWindow.Joueur2Choix == "Feu")
                 imgJoueur2.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard_fire/1_IDLE_000.png", UriKind.Relative));
+
             else if (MainWindow.Joueur2Choix == "Glace")
                 imgJoueur2.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard_ice/1_IDLE_000.png", UriKind.Relative));
+
             else if (MainWindow.Joueur2Choix == "Orage")
                 imgJoueur2.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard/1_IDLE_000.png", UriKind.Relative));
 

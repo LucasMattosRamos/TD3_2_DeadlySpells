@@ -74,12 +74,7 @@ namespace DeadlySpells
 
         private void AfficherChoisMaps(object sender, RoutedEventArgs e)
         {
-            // Sécurité : Si le joueur n'a rien sélectionné
-            if (string.IsNullOrEmpty(Joueur1Choix) || string.IsNullOrEmpty(Joueur2Choix))
-            {
-                MessageBox.Show("Veuillez sélectionner un Perso");
-                return;
-            }
+           
 
             UCChoisMaps uc = new UCChoisMaps();
             ZoneJeu.Content = uc;
