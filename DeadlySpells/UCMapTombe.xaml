@@ -5,43 +5,64 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DeadlySpells"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Focusable="True"
+             KeyDown="UserControl_KeyDown">
 
     <Viewbox Stretch="Uniform">
 
         <Canvas x:Name="MapTombe" Width="800" Height="450">
 
+            <!-- Fond -->
             <Canvas.Background>
                 <ImageBrush ImageSource="/Images maps/fondTombe.png" Stretch="Fill"/>
             </Canvas.Background>
 
+            <!-- Sol -->
             <Image Source="/Images maps/SolTombe.png"
                    Canvas.Left="58" Canvas.Top="259"
                    Width="684" Height="96"
-                   Stretch="Fill" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                   Stretch="Fill" Panel.ZIndex="1"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-            <Image Source="/Images maps/epinesTombe.png" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <!-- Epines -->
+            <Image Source="/Images maps/epinesTombe.png" Canvas.Left="0"   Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2"/>
+            <Image Source="/Images maps/epinesTombe.png" Canvas.Left="154" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2"/>
+            <Image Source="/Images maps/epinesTombe.png" Canvas.Left="288" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2"/>
+            <Image Source="/Images maps/epinesTombe.png" Canvas.Left="429" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2"/>
+            <Image Source="/Images maps/epinesTombe.png" Canvas.Left="574" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2"/>
+            <Image Source="/Images maps/epinesTombe.png" Canvas.Left="710" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2"/>
 
+            <!-- Joueur 1 -->
             <Image x:Name="imgJoueur1"
                    Canvas.Left="126" Canvas.Top="209"
                    Width="100" Height="100"
-                   Panel.ZIndex="10"/>
+                   Panel.ZIndex="10"
+                   RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <!-- J1 regarde à droite -->
+                    <ScaleTransform x:Name="scaleJoueur1" ScaleX="1" ScaleY="1"/>
+                </Image.RenderTransform>
+            </Image>
 
+            <!-- Joueur 2 -->
             <Image x:Name="imgJoueur2"
                    Canvas.Left="555" Canvas.Top="209"
                    Width="100" Height="100"
-                   Panel.ZIndex="10"/>
+                   Panel.ZIndex="10"
+                   RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <!-- J2 regarde à gauche -->
+                    <ScaleTransform x:Name="scaleJoueur2" ScaleX="-1" ScaleY="1"/>
+                </Image.RenderTransform>
+            </Image>
 
+            <!-- Bouton Menu -->
             <Button x:Name="butMenu"
                     Content="Menu" Width="80" Height="30"
                     Canvas.Right="10" Canvas.Top="10"
                     BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"
                     Panel.ZIndex="100" />
-            <Image Source="/Images maps/epinesTombe.png" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="154"/>
-            <Image Source="/Images maps/epinesTombe.png" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2" Canvas.Left="288" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Image Source="/Images maps/epinesTombe.png" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2" Canvas.Left="429" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Image Source="/Images maps/epinesTombe.png" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2" Canvas.Left="574" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Image Source="/Images maps/epinesTombe.png" Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2" Canvas.Left="710" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         </Canvas>
     </Viewbox>

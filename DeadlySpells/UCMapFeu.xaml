@@ -5,58 +5,76 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DeadlySpells"
              mc:Ignorable="d" 
-             d:DesignHeight="1080" d:DesignWidth="1920">
-    
-  <Viewbox Stretch="Uniform">
-    <Canvas x:Name="maMap" Width="1920" Height="1080">
+             d:DesignHeight="1080" d:DesignWidth="1920"
+             Focusable="True"
+             KeyDown="UserControl_KeyDown">
 
-        <Canvas.Background>
-            <ImageBrush ImageSource="/Images maps/Fond Feu.png"/>
-        </Canvas.Background>
+    <Viewbox Stretch="Uniform">
+        <Canvas x:Name="MapFeu" Width="1920" Height="1080">
 
-        <Image Source="/Images maps/SolFeu.png" 
-               Canvas.Left="80" Canvas.Top="141"
-               Width="1727" Height="977"
-               Stretch="Fill" 
-               RenderTransformOrigin="0.5,0.5"
-               Panel.ZIndex="1">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="0.626"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-2.453"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
+            <!-- Fond -->
+            <Canvas.Background>
+                <ImageBrush ImageSource="/Images maps/Fond Feu.png"/>
+            </Canvas.Background>
 
-        <Image Source="/Images maps/epinesFeu.png" Canvas.Left="0"    Canvas.Top="831" Width="281" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
-        <Image Source="/Images maps/epinesFeu.png" Canvas.Left="276"  Canvas.Top="831" Width="281" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
-        <Image Source="/Images maps/epinesFeu.png" Canvas.Left="539"  Canvas.Top="831" Width="281" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
-        <Image Source="/Images maps/epinesFeu.png" Canvas.Left="793"  Canvas.Top="831" Width="281" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
-        <Image Source="/Images maps/epinesFeu.png" Canvas.Left="1039" Canvas.Top="831" Width="281" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
-        <Image Source="/Images maps/epinesFeu.png" Canvas.Left="1279" Canvas.Top="831" Width="281" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
-        <Image Source="/Images maps/epinesFeu.png" Canvas.Left="1516" Canvas.Top="831" Width="281" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
-        <Image Source="/Images maps/epinesFeu.png" Canvas.Left="1656" Canvas.Top="831" Width="280" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
+            <!-- Sol -->
+            <Image Source="/Images maps/SolFeu.png" 
+                   Canvas.Left="80" Canvas.Top="141"
+                   Width="1727" Height="977"
+                   Stretch="Fill" 
+                   RenderTransformOrigin="0.5,0.5"
+                   Panel.ZIndex="1">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="0.626"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-2.453"/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
 
-        <Image x:Name="imgJoueur1" 
-               Canvas.Left="522" Canvas.Top="368" 
-               Width="200" Height="200"
-               Panel.ZIndex="10"/>
+            <!-- Epines -->
+            <Image Source="/Images maps/epinesFeu.png" Canvas.Left="0"    Canvas.Top="831" Width="281" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
+            <Image Source="/Images maps/epinesFeu.png" Canvas.Left="276"  Canvas.Top="831" Width="281" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
+            <Image Source="/Images maps/epinesFeu.png" Canvas.Left="539"  Canvas.Top="831" Width="281" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
+            <Image Source="/Images maps/epinesFeu.png" Canvas.Left="793"  Canvas.Top="831" Width="281" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
+            <Image Source="/Images maps/epinesFeu.png" Canvas.Left="1039" Canvas.Top="831" Width="281" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
+            <Image Source="/Images maps/epinesFeu.png" Canvas.Left="1279" Canvas.Top="831" Width="281" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
+            <Image Source="/Images maps/epinesFeu.png" Canvas.Left="1516" Canvas.Top="831" Width="281" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
+            <Image Source="/Images maps/epinesFeu.png" Canvas.Left="1656" Canvas.Top="831" Width="280" Height="249" Stretch="Fill" Panel.ZIndex="2"/>
 
-        <Image x:Name="imgJoueur2" 
-               Canvas.Left="1143" Canvas.Top="368" 
-               Width="200" Height="200" 
-               RenderTransformOrigin="0.47,0.43"
-               Panel.ZIndex="10"/>
+            <!-- Joueur 1 -->
+            <Image x:Name="imgJoueur1" 
+                   Canvas.Left="522" Canvas.Top="368" 
+                   Width="200" Height="200"
+                   Panel.ZIndex="10"
+                   RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <!-- J1 regarde à droite -->
+                    <ScaleTransform x:Name="scaleJoueur1" ScaleX="1" ScaleY="1"/>
+                </Image.RenderTransform>
+            </Image>
 
-        <Button x:Name="butMenu" 
-                Content="Menu" 
-                Width="80" Height="30" 
-                Canvas.Right="10" Canvas.Top="10"
-                BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"
-                Panel.ZIndex="100"/>
+            <!-- Joueur 2 -->
+            <Image x:Name="imgJoueur2" 
+                   Canvas.Left="1143" Canvas.Top="368" 
+                   Width="200" Height="200" 
+                   Panel.ZIndex="10"
+                   RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <!-- J2 regarde à gauche -->
+                    <ScaleTransform x:Name="scaleJoueur2" ScaleX="-1" ScaleY="1"/>
+                </Image.RenderTransform>
+            </Image>
 
-    </Canvas>
+            <!-- Bouton Menu -->
+            <Button x:Name="butMenu" 
+                    Content="Menu" 
+                    Width="80" Height="30" 
+                    Canvas.Right="10" Canvas.Top="10"
+                    BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"
+                    Panel.ZIndex="100"/>
+        </Canvas>
     </Viewbox>
 </UserControl>

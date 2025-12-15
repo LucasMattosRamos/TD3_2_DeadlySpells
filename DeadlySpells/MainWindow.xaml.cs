@@ -21,6 +21,9 @@ namespace DeadlySpells
         public static string Joueur1Choix { get; set; } = "";
         public static string Joueur2Choix { get; set; } = "";
 
+        // on garde ici la map actuellement affichée
+        private UserControl mapActuelle;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -107,32 +110,48 @@ namespace DeadlySpells
             if (ChoixMap == "Feu")
             {
                 UCMapFeu uc = new UCMapFeu();
+                mapActuelle = uc;                 //  on mémorise cette map
                 ZoneJeu.Content = uc;
                 uc.butMenu.Click += AfficheMenu;
             }
             else if (ChoixMap == "Glace")
             {
                 UCMapGlace uc = new UCMapGlace();
+                mapActuelle = uc;                 //  on mémorise cette map
                 ZoneJeu.Content = uc;
                 uc.butMenu.Click += AfficheMenu;
             }
             else if (ChoixMap == "Tombe")
             {
                 UCMapTombe uc = new UCMapTombe();
+                mapActuelle = uc;                 //  on mémorise cette map
                 ZoneJeu.Content = uc;
                 uc.butMenu.Click += AfficheMenu;
             }
-
         }
 
         private void AfficheMenu(object sender, RoutedEventArgs e)
-        { 
+        {
             UCMenu uc = new UCMenu();
+
+            // On affiche le menu à la place de la map
             ZoneJeu.Content = uc;
 
-            uc.butRetourPartie.Click += AfficheMap;
+            // Quand on clique sur "Reprendre la partie", on remet la map existante
+            uc.butRetourPartie.Click += RevenirALaPartie;
 
+            // Retour à l'accueil comme avant
             uc.butAccueil.Click += AfficherDemarrageRegle;
+        }
+
+
+        private void RevenirALaPartie(object sender, RoutedEventArgs e)
+        {
+            // On remet simplement la map qui était affichée avant le menu
+            if (mapActuelle != null)
+            {
+                ZoneJeu.Content = mapActuelle;
+            }
         }
 
         private static MediaPlayer musique;
