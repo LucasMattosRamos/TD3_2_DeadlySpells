@@ -154,7 +154,7 @@ namespace DeadlySpells
             }
         }
 
-        private static MediaPlayer musique;
+        public static MediaPlayer musique;
         private void InitMusique()
         {
 
@@ -169,5 +169,8 @@ namespace DeadlySpells
             musique.Position = TimeSpan.Zero;
             musique.Play();
         }
+
+
     }
-}
+    
+    }
