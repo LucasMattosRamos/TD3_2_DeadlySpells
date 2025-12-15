@@ -104,11 +104,10 @@ namespace DeadlySpells
             // Sécurité : Si le joueur n'a rien sélectionné
             if (string.IsNullOrEmpty(ChoixMap))
             {
-                MessageBox.Show("Veuillez sélectionner une carte !");
+                MessageBox.Show("Veuillez sélectionner une Map");
                 return;
             }
 
-            // Chargement de la bonne carte selon le TEXTE stocké
             if (ChoixMap == "Feu")
             {
                 UCMapFeu uc = new UCMapFeu();
@@ -127,8 +126,6 @@ namespace DeadlySpells
                 ZoneJeu.Content = uc;
                 uc.butMenu.Click += AfficheMenu;
             }
-
-
 
         }
 

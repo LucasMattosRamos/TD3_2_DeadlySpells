@@ -26,26 +26,43 @@ namespace DeadlySpells
 
         private void butSuivant_Click(object sender, RoutedEventArgs e)
         {
+
+            // Si la sélection du J1 est nulle OU celle du J2 est nulle
+            if (cbJ1.SelectedItem == null )
+            {
+                MessageBox.Show("Veuillez sélectionner un Perso pour Joueur1");
+                return; // On arrête tout ici, on ne va pas plus loin
+            }
+            else if  (cbJ2.SelectedItem == null)
+            {
+
+                MessageBox.Show("Veuillez sélectionner un Perso pour Joueur2");
+                return; // On arrête tout ici, on ne va pas plus loin
+
+
+            }
            
+
 
             // Récupérer le texte choisi pour Joueur 1
             ComboBoxItem persoJ1 = (ComboBoxItem)cbJ1.SelectedItem;
-            StackPanel stackpanelJ1 = (StackPanel)persoJ1.Content;
+            StackPanel stackpanelJ1 = (StackPanel)persoJ1.Content;           
             Image imageJ1 = (Image)stackpanelJ1.Children[0];
             TextBlock textblockJ1 = (TextBlock)stackpanelJ1.Children[1];
             MainWindow.Joueur1Choix = textblockJ1.Text;
-
-
-
+            
             // Récupérer le texte choisi pour Joueur 2
             ComboBoxItem persoJ2 = (ComboBoxItem)cbJ2.SelectedItem;
             StackPanel stackpanelJ2 = (StackPanel)persoJ2.Content;
             Image imageJ2 = (Image)stackpanelJ1.Children[0];
             TextBlock textblockJ2 = (TextBlock)stackpanelJ2.Children[1];
             MainWindow.Joueur2Choix = textblockJ2.Text;
-
-            // Ensuite, aller vers la page de choix des maps
             
+           
+            
+           
+            // Ensuite, aller vers la page de choix des maps
+
         }
 
 
