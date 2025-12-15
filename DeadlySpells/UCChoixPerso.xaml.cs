@@ -26,12 +26,16 @@ namespace DeadlySpells
 
         private void butSuivant_Click(object sender, RoutedEventArgs e)
         {
+           
+
             // Récupérer le texte choisi pour Joueur 1
             ComboBoxItem persoJ1 = (ComboBoxItem)cbJ1.SelectedItem;
             StackPanel stackpanelJ1 = (StackPanel)persoJ1.Content;
             Image imageJ1 = (Image)stackpanelJ1.Children[0];
             TextBlock textblockJ1 = (TextBlock)stackpanelJ1.Children[1];
             MainWindow.Joueur1Choix = textblockJ1.Text;
+
+
 
             // Récupérer le texte choisi pour Joueur 2
             ComboBoxItem persoJ2 = (ComboBoxItem)cbJ2.SelectedItem;

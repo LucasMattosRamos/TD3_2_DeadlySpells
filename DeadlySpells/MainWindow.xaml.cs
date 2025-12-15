@@ -49,6 +49,10 @@ namespace DeadlySpells
 
         private void AfficherChoixPerso(object sender, RoutedEventArgs e)
         {
+
+            
+
+
             UCChoixPerso uc = new UCChoixPerso();
             ZoneJeu.Content = uc;
             uc.butSuivant.Click += AfficherChoisMaps;
@@ -70,6 +74,13 @@ namespace DeadlySpells
 
         private void AfficherChoisMaps(object sender, RoutedEventArgs e)
         {
+            // Sécurité : Si le joueur n'a rien sélectionné
+            if (string.IsNullOrEmpty(Joueur1Choix) || string.IsNullOrEmpty(Joueur2Choix))
+            {
+                MessageBox.Show("Veuillez sélectionner un Perso");
+                return;
+            }
+
             UCChoisMaps uc = new UCChoisMaps();
             ZoneJeu.Content = uc;
 
@@ -102,17 +113,37 @@ namespace DeadlySpells
             {
                 UCMapFeu uc = new UCMapFeu();
                 ZoneJeu.Content = uc;
+                uc.butMenu.Click += AfficheMenu;
             }
             else if (ChoixMap == "Glace")
             {
                 UCMapGlace uc = new UCMapGlace();
                 ZoneJeu.Content = uc;
+                uc.butMenu.Click += AfficheMenu;
             }
             else if (ChoixMap == "Tombe")
             {
                 UCMapTombe uc = new UCMapTombe();
                 ZoneJeu.Content = uc;
+                uc.butMenu.Click += AfficheMenu;
             }
+
+
+
         }
+
+        private void AfficheMenu(object sender, RoutedEventArgs e)
+        { 
+            UCMenu uc = new UCMenu();
+            ZoneJeu.Content = uc;
+
+            uc.butRetourPartie.Click += AfficheMap;
+
+            uc.butAccueil.Click += AfficherDemarrageRegle;
+        }
+
+
+
+
     }
 }
