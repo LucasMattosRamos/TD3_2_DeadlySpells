@@ -130,10 +130,14 @@
     <None Remove="ImagesSorcier\PNG\wizard_ice\7_DIE_008.png" />
     <None Remove="ImagesSorcier\PNG\wizard_ice\7_DIE_011.png" />
     <None Remove="Images\Accueil.png" />
+    <None Remove="Images\blast.png" />
     <None Remove="Images\Deadly Spells ecrit.png" />
     <None Remove="Images\Deadly Spells.png" />
+    <None Remove="Images\fire.png" />
     <None Remove="Images\Fond.png" />
+    <None Remove="Images\ice.png" />
     <None Remove="Images\imageAccueil.jpg" />
+    <None Remove="Images\lightning.png" />
     <None Remove="Images\RegleDeJeu.png" />
     <None Remove="Images\RegleEcrite.png" />
     <None Remove="Images\REGLESDUJEU.png" />
@@ -260,8 +264,12 @@
     <Resource Include="ImagesSorcier\PNG\wizard_ice\7_DIE_008.png" />
     <Resource Include="ImagesSorcier\PNG\wizard_ice\7_DIE_011.png" />
     <Resource Include="Images\Accueil.png" />
+    <Resource Include="Images\blast.png" />
     <Resource Include="Images\Deadly Spells ecrit.png" />
+    <Resource Include="Images\fire.png" />
     <Resource Include="Images\Fond.png" />
+    <Resource Include="Images\ice.png" />
+    <Resource Include="Images\lightning.png" />
     <Resource Include="Images\RegleEcrite.png" />
     <Resource Include="Images\REGLESDUJEU.png" />
   </ItemGroup>

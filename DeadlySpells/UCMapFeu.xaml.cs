@@ -17,28 +17,33 @@ using System.Windows.Threading;
 
 namespace DeadlySpells
 {
-    /// <summary>
-    /// Logique d'interaction pour UCMapFeu.xaml
-    /// </summary>
     public partial class UCMapFeu : UserControl
     {
-        // --- Constantes du terrain / physique (en français) ---
+        // --- Constantes du terrain / physique pour la map Feu ---
 
         // Position Y du joueur lorsqu'il est posé sur le sol (Canvas.Top au repos)
         private const double HauteurSol = 368;
 
         // Hauteur à partir de laquelle on considère que le joueur touche les épines
         private const double HauteurEpines = 831;
-        // Limites horizontales de la plateforme de glace
+
+        // Limites horizontales de la plateforme de Feu
         private const double LimiteGauchePlateforme = 80;
-        private const double LimiteDroitePlateforme = 80 + 1727 - 200;
+        private const double LimiteDroitePlateforme = 80 + 1727 - 200; // largeur sol - largeur perso
+
+        // Positions de respawn
+        private const double RespawnXJ1 = 522;
+        private const double RespawnXJ2 = 1143;
 
         // Paramètres de mouvement
-        private const double VitesseDeplacement = 15;   // vitesse horizontale
-        private const double Gravite = 1.2;             // gravité appliquée à chaque tick
-        private const double VitesseSaut = -22;         // vitesse verticale initiale pour le saut
+        private const double VitesseDeplacement = 15;
+        private const double Gravite = 1.2;
+        private const double VitesseSaut = -22;
 
-        // État des joueurs
+        // Vitesse des projectiles
+        private const double VitesseProjectile = 10;
+
+        // --- État des joueurs ---
         private double vitesseVerticaleJ1 = 0;
         private double vitesseVerticaleJ2 = 0;
         private bool estAuSolJ1 = true;
@@ -47,125 +52,237 @@ namespace DeadlySpells
         private int viesJ1 = 3;
         private int viesJ2 = 3;
 
-        private DispatcherTimer timer;
+        private bool jeuEstFini = false;
+
+        private DispatcherTimer? timer;
+
+        // --- Projectiles ---
+        private class Projectile
+        {
+            public Image Sprite = null!;
+            public double Vx;
+            public bool FromJ1;
+        }
+
+        private readonly List<Projectile> projectiles = new List<Projectile>();
 
         public UCMapFeu()
         {
             InitializeComponent();
 
-            // --- Initialisation de l'image du Joueur 1 ---
-            if (MainWindow.Joueur1Choix == "Feu")
-                imgJoueur1.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard_fire/1_IDLE_000.png", UriKind.Relative));
-            else if (MainWindow.Joueur1Choix == "Glace")
-                imgJoueur1.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard_ice/1_IDLE_000.png", UriKind.Relative));
-            else if (MainWindow.Joueur1Choix == "Orage")
-                imgJoueur1.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard/1_IDLE_000.png", UriKind.Relative));
-
-            // --- Initialisation de l'image du Joueur 2 ---
-            if (MainWindow.Joueur2Choix == "Feu")
-                imgJoueur2.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard_fire/1_IDLE_000.png", UriKind.Relative));
-            else if (MainWindow.Joueur2Choix == "Glace")
-                imgJoueur2.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard_ice/1_IDLE_000.png", UriKind.Relative));
-            else if (MainWindow.Joueur2Choix == "Orage")
-                imgJoueur2.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard/1_IDLE_000.png", UriKind.Relative));
-
-            // Le UserControl doit pouvoir recevoir le focus clavier
-            this.Focusable = true;
-            this.Loaded += (s, e) => this.Focus();
-
-            // Timer pour la gravité / les chutes (environ 60 FPS)
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(16);
-            timer.Tick += Timer_Tick;
-            timer.Start();
+            // On attend que l'écran soit chargé pour lancer la partie et mettre le focus
+            this.Loaded += (s, e) =>
+            {
+                InitialiserPartie();
+                this.Focus();
+            };
         }
 
-        // Gestion des touches clavier
+        private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Redonne le focus clavier au UserControl
+            this.Focus();
+        }
+
+        // ------------------ INITIALISATION PARTIE ------------------
+
+        private void InitialiserPartie()
+        {
+            // Reset des variables
+            viesJ1 = 3;
+            viesJ2 = 3;
+            vitesseVerticaleJ1 = 0;
+            vitesseVerticaleJ2 = 0;
+            estAuSolJ1 = true;
+            estAuSolJ2 = true;
+            jeuEstFini = false;
+
+            // Masquer l'écran de fin
+            if (GridFinDePartie != null)
+                GridFinDePartie.Visibility = Visibility.Collapsed;
+
+            MettreAJourViesUI();
+
+            // Positions de départ
+            Canvas.SetLeft(imgJoueur1, RespawnXJ1);
+            Canvas.SetTop(imgJoueur1, HauteurSol);
+            scaleJoueur1.ScaleX = 1;
+
+            Canvas.SetLeft(imgJoueur2, RespawnXJ2);
+            Canvas.SetTop(imgJoueur2, HauteurSol);
+            scaleJoueur2.ScaleX = -1;
+
+            // Skins des joueurs
+            ChargerSkinJoueur(imgJoueur1, MainWindow.Joueur1Choix);
+            ChargerSkinJoueur(imgJoueur2, MainWindow.Joueur2Choix);
+
+            // Nettoyage des anciens projectiles
+            foreach (var p in projectiles)
+            {
+                MapFeu.Children.Remove(p.Sprite);
+            }
+            projectiles.Clear();
+
+            // Timer de jeu
+            if (timer != null)
+                timer.Stop();
+
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(16); // ~60 FPS
+            timer.Tick += Timer_Tick;
+            timer.Start();
+
+            this.Focus();
+        }
+
+        private void ChargerSkinJoueur(Image img, string choix)
+        {
+            string dossier = "wizard"; // par défaut : Orage
+            if (choix == "Feu") dossier = "wizard_fire";
+            else if (choix == "Glace") dossier = "wizard_ice";
+
+            img.Source = new BitmapImage(
+                new Uri($"/ImagesSorcier/PNG/{dossier}/1_IDLE_000.png", UriKind.Relative));
+        }
+
+        // ------------------ CLAVIER ------------------
+
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
-            // On récupère la position X actuelle des joueurs
-            double positionJ1 = Canvas.GetLeft(imgJoueur1);
-            double positionJ2 = Canvas.GetLeft(imgJoueur2);
+            if (jeuEstFini) return;
 
-            switch (e.Key)
+            // ----------------- JOUEUR 1 (Q / D / Z / Espace) -----------------
+
+            double xJ1 = Canvas.GetLeft(imgJoueur1);
+            if (double.IsNaN(xJ1)) xJ1 = RespawnXJ1;
+
+            // Droite (D)
+            if (Keyboard.IsKeyDown(Key.D))
             {
-                // --- Joueur 1 : Q / D / Z ---
-                case Key.D:
-                    // Déplacement vers la droite
-                    Canvas.SetLeft(imgJoueur1, positionJ1 + VitesseDeplacement);
-                    scaleJoueur1.ScaleX = 1;   // regarde à droite
-                    break;
+                double prochainX = xJ1 + VitesseDeplacement;
 
-                case Key.Q:
-                    // Déplacement vers la gauche
-                    Canvas.SetLeft(imgJoueur1, positionJ1 - VitesseDeplacement);
-                    scaleJoueur1.ScaleX = -1;  // regarde à gauche
-                    break;
+                // Comme dans ton SNAKE : on vérifie la limite avant de bouger
+                if (prochainX <= LimiteDroitePlateforme)
+                {
+                    Canvas.SetLeft(imgJoueur1, prochainX);
+                    scaleJoueur1.ScaleX = 1; // regarde à droite
+                    xJ1 = prochainX;
+                }
+            }
 
-                case Key.Z:
-                    if (estAuSolJ1)
-                    {
-                        vitesseVerticaleJ1 = VitesseSaut;
-                        estAuSolJ1 = false;
-                    }
-                    break;
-                case Key.Space:
-                    LancerSort(imgJoueur1, MainWindow.Joueur1Choix);
-                    break;
+            // Gauche (Q)
+            if (Keyboard.IsKeyDown(Key.Q))
+            {
+                double prochainX = xJ1 - VitesseDeplacement;
 
-                // --- Joueur 2 : flèches gauche / droite / haut ---
-                case Key.Right:
-                    Canvas.SetLeft(imgJoueur2, positionJ2 + VitesseDeplacement);
-                    scaleJoueur2.ScaleX = 1;   // regarde à droite
-                    break;
+                if (prochainX >= LimiteGauchePlateforme)
+                {
+                    Canvas.SetLeft(imgJoueur1, prochainX);
+                    scaleJoueur1.ScaleX = -1; // regarde à gauche
+                    xJ1 = prochainX;
+                }
+            }
 
-                case Key.Left:
-                    Canvas.SetLeft(imgJoueur2, positionJ2 - VitesseDeplacement);
-                    scaleJoueur2.ScaleX = -1;  // regarde à gauche
-                    break;
+            // Saut (Z)
+            if (Keyboard.IsKeyDown(Key.Z) && estAuSolJ1)
+            {
+                vitesseVerticaleJ1 = VitesseSaut;
+                estAuSolJ1 = false;
+            }
 
-                case Key.Up:
-                    if (estAuSolJ2)
-                    {
-                        vitesseVerticaleJ2 = VitesseSaut;
-                        estAuSolJ2 = false;
-                    }
-                    break;
-                case Key.RightShift:
-                    LancerSort(imgJoueur2, MainWindow.Joueur2Choix);
-                    break;
+            // Tir (Espace) – déclenché au moment de la touche reçue
+            if (e.Key == Key.Space)
+            {
+                LancerSort(imgJoueur1, MainWindow.Joueur1Choix, true);
+            }
+
+            // ----------------- JOUEUR 2 (flèches + Shift) -----------------
+
+            double xJ2 = Canvas.GetLeft(imgJoueur2);
+            if (double.IsNaN(xJ2)) xJ2 = RespawnXJ2;
+
+            // Droite (→)
+            if (Keyboard.IsKeyDown(Key.Right))
+            {
+                double prochainX = xJ2 + VitesseDeplacement;
+
+                // Ici on utilise les mêmes limites que pour J1, tu peux adapter si besoin
+                if (prochainX <= LimiteDroitePlateforme)
+                {
+                    Canvas.SetLeft(imgJoueur2, prochainX);
+                    scaleJoueur2.ScaleX = 1; // regarde à droite
+                    xJ2 = prochainX;
+                }
+            }
+
+            // Gauche (←)
+            if (Keyboard.IsKeyDown(Key.Left))
+            {
+                double prochainX = xJ2 - VitesseDeplacement;
+
+                if (prochainX >= LimiteGauchePlateforme)
+                {
+                    Canvas.SetLeft(imgJoueur2, prochainX);
+                    scaleJoueur2.ScaleX = -1; // regarde à gauche
+                    xJ2 = prochainX;
+                }
+            }
+
+            // Saut (↑)
+            if (Keyboard.IsKeyDown(Key.Up) && estAuSolJ2)
+            {
+                vitesseVerticaleJ2 = VitesseSaut;
+                estAuSolJ2 = false;
+            }
+
+            // Tir (RightShift)
+            if (e.Key == Key.RightShift)
+            {
+                LancerSort(imgJoueur2, MainWindow.Joueur2Choix, false);
             }
         }
 
-        // Tick du timer : applique la gravité et gère les chutes / épines
+        // ------------------ TIMER ------------------
+
         private void Timer_Tick(object? sender, EventArgs e)
         {
-            // 299 et 1416 = positions de respawn X des joueurs
-            AppliquerPhysique(imgJoueur1, ref vitesseVerticaleJ1, ref estAuSolJ1, ref viesJ1, 299);
-            AppliquerPhysique(imgJoueur2, ref vitesseVerticaleJ2, ref estAuSolJ2, ref viesJ2, 1416);
+            if (jeuEstFini) return;
+
+            bool j1EstMort = AppliquerPhysique(imgJoueur1, ref vitesseVerticaleJ1, ref estAuSolJ1, ref viesJ1, RespawnXJ1);
+            bool j2EstMort = AppliquerPhysique(imgJoueur2, ref vitesseVerticaleJ2, ref estAuSolJ2, ref viesJ2, RespawnXJ2);
+
+            if (j1EstMort || j2EstMort)
+            {
+                MettreAJourViesUI();
+                VerifierFinDePartie();
+            }
+
+            // Mise à jour des projectiles (déplacement + collisions)
+            MettreAJourProjectiles();
         }
 
-        /// <summary>
-        /// Applique la gravité, gère le sol, les épines et le respawn pour un joueur.
-        /// </summary>
-        private void AppliquerPhysique(Image imageJoueur,  ref double vitesseVerticale, ref bool estAuSol, ref int viesJoueur,  double positionRespawnX)
+        // ------------------ PHYSIQUE JOUEURS ------------------
+
+        private bool AppliquerPhysique(Image imageJoueur,
+                                       ref double vitesseVerticale,
+                                       ref bool estAuSol,
+                                       ref int viesJoueur,
+                                       double positionRespawnX)
         {
+            bool aPerduUneVie = false;
             double positionY = Canvas.GetTop(imageJoueur);
             double positionX = Canvas.GetLeft(imageJoueur);
 
-            // Est-ce que le joueur est en dehors de la plateforme ?
             bool estHorsPlateforme = positionX < LimiteGauchePlateforme || positionX > LimiteDroitePlateforme;
 
-            // Si le joueur saute ou se trouve au-dessus du vide, on applique la gravité
             if (!estAuSol || estHorsPlateforme)
             {
-                vitesseVerticale += Gravite;     // accélération vers le bas
-                positionY += vitesseVerticale;   // nouvelle position verticale
+                vitesseVerticale += Gravite;
+                positionY += vitesseVerticale;
                 Canvas.SetTop(imageJoueur, positionY);
                 estAuSol = false;
             }
 
-            // Si le joueur retombe sur la plateforme
             if (!estHorsPlateforme && positionY >= HauteurSol && vitesseVerticale >= 0)
             {
                 positionY = HauteurSol;
@@ -174,110 +291,241 @@ namespace DeadlySpells
                 estAuSol = true;
             }
 
-            // Si le joueur tombe sur les épines (trop bas)
             if (positionY >= HauteurEpines)
             {
                 viesJoueur--;
+                aPerduUneVie = true;
 
-                // Ici tu peux connecter à ton affichage de vies
-                if (viesJoueur <= 0)
+                if (viesJoueur > 0)
                 {
-                    MessageBox.Show("Le joueur a perdu ses 3 vies !");
-                    viesJoueur = 3; // Remise à 3 vies pour continuer à tester
+                    Canvas.SetLeft(imageJoueur, positionRespawnX);
+                    Canvas.SetTop(imageJoueur, HauteurSol);
+                    vitesseVerticale = 0;
+                    estAuSol = true;
                 }
+                else
+                {
+                    Canvas.SetTop(imageJoueur, HauteurEpines + 100);
+                }
+            }
 
-                // Respawn sur la plateforme
-                Canvas.SetLeft(imageJoueur, positionRespawnX);
-                Canvas.SetTop(imageJoueur, HauteurSol);
-                vitesseVerticale = 0;
-                estAuSol = true;
+            return aPerduUneVie;
+        }
+
+        // ------------------ VIES / FIN DE PARTIE ------------------
+
+        private void MettreAJourViesUI()
+        {
+            string coeursJ1 = "";
+            for (int i = 0; i < viesJ1; i++) coeursJ1 += "❤️";
+            txtViesJ1.Text = coeursJ1;
+
+            string coeursJ2 = "";
+            for (int i = 0; i < viesJ2; i++) coeursJ2 += "❤️";
+            txtViesJ2.Text = coeursJ2;
+        }
+
+        private void VerifierFinDePartie()
+        {
+            if (viesJ1 <= 0 || viesJ2 <= 0)
+            {
+                jeuEstFini = true;
+                if (timer != null) timer.Stop();
+
+                string gagnant = "";
+                if (viesJ1 <= 0 && viesJ2 > 0) gagnant = "JOUEUR 2";
+                else if (viesJ2 <= 0 && viesJ1 > 0) gagnant = "JOUEUR 1";
+                else gagnant = "PERSONNE (Egalité)";
+
+                txtGagnant.Text = gagnant + " REMPORTE LA PARTIE !";
+                GridFinDePartie.Visibility = Visibility.Visible;
             }
         }
-        private void LancerSort(Image joueur, string choixSorcier)
+
+        // ------------------ PROJECTILES ------------------
+
+        private string ObtenirImageProjectile(string choixSorcier)
         {
-            string dossier;
-
             if (choixSorcier == "Feu")
-                dossier = "wizard_fire";
+                return "/Images/fire.png";
             else if (choixSorcier == "Glace")
-                dossier = "wizard_ice";
+                return "/Images/ice.png";
             else
-                dossier = "wizard"; // par défaut (Orage)
-
-            int frame = 0;
-            DispatcherTimer sort = new DispatcherTimer();
-            sort.Interval = TimeSpan.FromMilliseconds(100);
-            sort.Tick += (s, e) =>
-            {
-                string path = $"/ImagesSorcier/PNG/{dossier}/5_ATTACK_{frame:D3}.png";
-                joueur.Source = new BitmapImage(new Uri(path, UriKind.Relative));
-                frame++;
-
-                if (frame > 6)
-                {
-                    sort.Stop();
-                    joueur.Source = new BitmapImage(new Uri($"/ImagesSorcier/PNG/{dossier}/1_IDLE_000.png", UriKind.Relative));
-                }
-            };
-            sort.Start();
-        }
-        private void LancerHurt(Image joueur, string choixSorcier)
-        {
-            string dossier;
-
-            if (choixSorcier == "Feu")
-                dossier = "wizard_fire";
-            else if (choixSorcier == "Glace")
-                dossier = "wizard_ice";
-            else
-                dossier = "wizard"; // par défaut (Orage)
-
-            int frame = 0;
-            DispatcherTimer hurt = new DispatcherTimer();
-            hurt.Interval = TimeSpan.FromMilliseconds(100);
-            hurt.Tick += (s, e) =>
-            {
-                string path = $"/ImagesSorcier/PNG/{dossier}/6_HURT_{frame:D3}.png";
-                joueur.Source = new BitmapImage(new Uri(path, UriKind.Relative));
-                frame++;
-                if (frame > 4)
-                {
-                    hurt.Stop();
-                    joueur.Source = new BitmapImage(new Uri($"/ImagesSorcier/PNG/{dossier}/1_IDLE_000.png", UriKind.Relative));
-                }
-            };
-            hurt.Start();
+                return "/Images/lightning.png";
         }
 
-        private void LancerDie(Image joueur, string choixSorcier)
+        // Crée le projectile + lance l'animation d'attaque du sorcier
+        private void LancerSort(Image joueur, string choixSorcier, bool fromJ1)
         {
-            string dossier;
+            // 1) Création du projectile (ancien code) -----------------------
+            Image imgProj = new Image
+            {
+                Width = 60,
+                Height = 60,
+                Source = new BitmapImage(new Uri(ObtenirImageProjectile(choixSorcier), UriKind.Relative))
+            };
 
-            if (choixSorcier == "Feu")
-                dossier = "wizard_fire";
-            else if (choixSorcier == "Glace")
-                dossier = "wizard_ice";
+            // Position de départ = centre du joueur
+            double xJ = Canvas.GetLeft(joueur);
+            double yJ = Canvas.GetTop(joueur);
+
+            if (double.IsNaN(xJ)) xJ = fromJ1 ? RespawnXJ1 : RespawnXJ2;
+            if (double.IsNaN(yJ)) yJ = HauteurSol;
+
+            double xProj = xJ + joueur.Width / 2 - imgProj.Width / 2;
+            double yProj = yJ + joueur.Height / 2 - imgProj.Height / 2;
+
+            Canvas.SetLeft(imgProj, xProj);
+            Canvas.SetTop(imgProj, yProj);
+
+            MapFeu.Children.Add(imgProj);
+
+            // Direction selon l'orientation du joueur
+            double direction = 1;
+            if (fromJ1)
+            {
+                if (scaleJoueur1.ScaleX < 0) direction = -1;
+            }
             else
-                dossier = "wizard"; // par défaut (Orage)
+            {
+                if (scaleJoueur2.ScaleX < 0) direction = -1;
+            }
+
+            Projectile p = new Projectile
+            {
+                Sprite = imgProj,
+                Vx = direction * VitesseProjectile,
+                FromJ1 = fromJ1
+            };
+
+            projectiles.Add(p);
+
+            // 2) Animation du sorcier qui lance le sort --------------------
+
+            // dossier des sprites selon le sorcier
+            string dossierPerso = "wizard";
+            if (choixSorcier == "Feu") dossierPerso = "wizard_fire";
+            else if (choixSorcier == "Glace") dossierPerso = "wizard_ice";
 
             int frame = 0;
-            DispatcherTimer die = new DispatcherTimer();
-            die.Interval = TimeSpan.FromMilliseconds(100);
-            die.Tick += (s, e) =>
+            DispatcherTimer anim = new DispatcherTimer();
+            anim.Interval = TimeSpan.FromMilliseconds(80); // vitesse de l'anim
+
+            anim.Tick += (s, e) =>
             {
-                string path = $"/ImagesSorcier/PNG/{dossier}/7_DIE_{frame:D3}.png";
-                joueur.Source = new BitmapImage(new Uri(path, UriKind.Relative));
-                frame++;
-                if (frame > 4)
+                // tant qu'on a des frames d'attaque
+                if (frame <= 6)
                 {
-                    die.Stop();
-                    joueur.Source = new BitmapImage(new Uri($"/ImagesSorcier/PNG/{dossier}/1_IDLE_000.png", UriKind.Relative));
+                    string path = $"/ImagesSorcier/PNG/{dossierPerso}/5_ATTACK_{frame:D3}.png";
+                    joueur.Source = new BitmapImage(new Uri(path, UriKind.Relative));
+                    frame++;
+                }
+                else
+                {
+                    // on revient à l'idle à la fin de l'animation
+                    string idlePath = $"/ImagesSorcier/PNG/{dossierPerso}/1_IDLE_000.png";
+                    joueur.Source = new BitmapImage(new Uri(idlePath, UriKind.Relative));
+                    anim.Stop();
                 }
             };
-            die.Start();
+
+            anim.Start();
         }
 
+        private void MettreAJourProjectiles()
+        {
+            if (projectiles.Count == 0) return;
 
+            List<Projectile> aSupprimer = new List<Projectile>();
+
+            foreach (var p in projectiles)
+            {
+                double x = Canvas.GetLeft(p.Sprite);
+                double y = Canvas.GetTop(p.Sprite);
+
+                x += p.Vx;
+                Canvas.SetLeft(p.Sprite, x);
+
+                // Supprimer s'il sort de l'écran
+                if (x < -100 || x > 1920 + 100)
+                {
+                    aSupprimer.Add(p);
+                    continue;
+                }
+
+                // Collision avec un joueur
+                Rect rectProj = new Rect(x, y, p.Sprite.Width, p.Sprite.Height);
+
+                if (p.FromJ1 && viesJ2 > 0)
+                {
+                    double x2 = Canvas.GetLeft(imgJoueur2);
+                    double y2 = Canvas.GetTop(imgJoueur2);
+                    Rect rectJ2 = new Rect(x2, y2, imgJoueur2.Width, imgJoueur2.Height);
+
+                    if (rectProj.IntersectsWith(rectJ2))
+                    {
+                        // Joueur 2 perd une vie
+                        viesJ2--;
+                        MettreAJourViesUI();
+                        VerifierFinDePartie();
+
+                        if (!jeuEstFini && viesJ2 > 0)
+                        {
+                            Canvas.SetLeft(imgJoueur2, RespawnXJ2);
+                            Canvas.SetTop(imgJoueur2, HauteurSol);
+                            vitesseVerticaleJ2 = 0;
+                            estAuSolJ2 = true;
+                        }
+
+                        aSupprimer.Add(p);
+                        continue;
+                    }
+                }
+                else if (!p.FromJ1 && viesJ1 > 0)
+                {
+                    double x1 = Canvas.GetLeft(imgJoueur1);
+                    double y1 = Canvas.GetTop(imgJoueur1);
+                    Rect rectJ1 = new Rect(x1, y1, imgJoueur1.Width, imgJoueur1.Height);
+
+                    if (rectProj.IntersectsWith(rectJ1))
+                    {
+                        // Joueur 1 perd une vie
+                        viesJ1--;
+                        MettreAJourViesUI();
+                        VerifierFinDePartie();
+
+                        if (!jeuEstFini && viesJ1 > 0)
+                        {
+                            Canvas.SetLeft(imgJoueur1, RespawnXJ1);
+                            Canvas.SetTop(imgJoueur1, HauteurSol);
+                            vitesseVerticaleJ1 = 0;
+                            estAuSolJ1 = true;
+                        }
+
+                        aSupprimer.Add(p);
+                        continue;
+                    }
+                }
+            }
+
+            // Suppression des projectiles morts
+            foreach (var p in aSupprimer)
+            {
+                MapFeu.Children.Remove(p.Sprite);
+                projectiles.Remove(p);
+            }
+        }
+
+        // ------------------ BOUTONS FIN DE PARTIE ------------------
+
+        private void BtnRejouer_Click(object sender, RoutedEventArgs e)
+        {
+            InitialiserPartie();
+        }
+
+        private void BtnQuitter_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
-

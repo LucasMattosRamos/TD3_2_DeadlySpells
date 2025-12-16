@@ -10,6 +10,7 @@
              KeyDown="UserControl_KeyDown" MouseDown="UserControl_MouseDown">
 
     <Viewbox Stretch="Uniform">
+        
         <Canvas x:Name="MapGlace" Width="1920" Height="1080">
 
             <Canvas.Background>

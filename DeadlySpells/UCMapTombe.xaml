@@ -7,7 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Focusable="True"
-             KeyDown="UserControl_KeyDown">
+             KeyDown="UserControl_KeyDown"
+             MouseDown="UserControl_MouseDown">
 
     <Viewbox Stretch="Uniform">
 
@@ -22,8 +23,7 @@
             <Image Source="/Images maps/SolTombe.png"
                    Canvas.Left="58" Canvas.Top="259"
                    Width="684" Height="96"
-                   Stretch="Fill" Panel.ZIndex="1"
-                   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                   Stretch="Fill" Panel.ZIndex="1" />
 
             <!-- Epines -->
             <Image Source="/Images maps/epinesTombe.png" Canvas.Left="0"   Canvas.Top="373" Width="176" Height="96" Stretch="Fill" Panel.ZIndex="2"/>
@@ -40,7 +40,6 @@
                    Panel.ZIndex="10"
                    RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
-                    <!-- J1 regarde à droite -->
                     <ScaleTransform x:Name="scaleJoueur1" ScaleX="1" ScaleY="1"/>
                 </Image.RenderTransform>
             </Image>
@@ -52,17 +51,71 @@
                    Panel.ZIndex="10"
                    RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
-                    <!-- J2 regarde à gauche -->
                     <ScaleTransform x:Name="scaleJoueur2" ScaleX="-1" ScaleY="1"/>
                 </Image.RenderTransform>
             </Image>
 
+            <!-- Bandeau vies -->
+            <Grid Width="800" Height="80" Panel.ZIndex="50">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,10,0,0">
+                    <TextBlock Text="JOUEUR 1" FontFamily="Segoe UI Black" FontSize="20" Foreground="#FF5E5E"
+                               VerticalAlignment="Center" Margin="0,0,10,0">
+                        <TextBlock.Effect>
+                            <DropShadowEffect ShadowDepth="1" BlurRadius="2"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                    <TextBlock x:Name="txtViesJ1" Text="❤️❤️❤️" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,20,0">
+                    <TextBlock x:Name="txtViesJ2" Text="❤️❤️❤️" FontSize="24" VerticalAlignment="Center"
+                               Margin="0,0,10,0" Foreground="White"/>
+                    <TextBlock Text="JOUEUR 2" FontFamily="Segoe UI Black" FontSize="20" Foreground="#5EA2FF"
+                               VerticalAlignment="Center">
+                        <TextBlock.Effect>
+                            <DropShadowEffect ShadowDepth="1" BlurRadius="2"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+
             <!-- Bouton Menu -->
             <Button x:Name="butMenu"
                     Content="Menu" Width="80" Height="30"
-                    Canvas.Right="10" Canvas.Top="10"
+                    Canvas.Right="10" Canvas.Top="80"
                     BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"
-                    Panel.ZIndex="100" />
+                    FontSize="16" Panel.ZIndex="100"/>
+
+            <!-- Ecran de fin de partie -->
+            <Grid x:Name="GridFinDePartie" Width="800" Height="450" Panel.ZIndex="200" Visibility="Collapsed">
+                <Grid.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.85"/>
+                </Grid.Background>
+
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="VICTOIRE !" 
+                               FontSize="60" FontWeight="Bold" Foreground="#FFD700" 
+                               HorizontalAlignment="Center">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="Orange" BlurRadius="20" ShadowDepth="0"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+
+                    <TextBlock x:Name="txtGagnant" 
+                               Text="Le Joueur X a gagné" 
+                               FontSize="30" Foreground="White" 
+                               HorizontalAlignment="Center" Margin="0,10,0,30"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="REJOUER" Click="BtnRejouer_Click" 
+                                Width="160" Height="50" FontSize="20" Background="White" FontWeight="Bold" 
+                                Margin="10,0,10,0"/>
+                        <Button Content="QUITTER" Click="BtnQuitter_Click" 
+                                Width="160" Height="50" FontSize="20" Background="Gray" Foreground="White" FontWeight="Bold" 
+                                Margin="10,0,10,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
 
         </Canvas>
     </Viewbox>
