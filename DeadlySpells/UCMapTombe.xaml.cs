@@ -136,7 +136,7 @@ namespace DeadlySpells
                         estAuSolJ2 = false;
                     }
                     break;
-                case Key.Enter:
+                case Key.RightShift:
                     LancerSort(imgJoueur2, MainWindow.Joueur2Choix);
                     break;
             }

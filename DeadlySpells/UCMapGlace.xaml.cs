@@ -150,7 +150,7 @@ namespace DeadlySpells
                 case Key.Up:
                     if (estAuSolJ2) { vitesseVerticaleJ2 = VitesseSaut; estAuSolJ2 = false; }
                     break;
-                case Key.Enter:
+                case Key.RightShift:
                     LancerSort(imgJoueur2, MainWindow.Joueur2Choix);
                     break;
             }

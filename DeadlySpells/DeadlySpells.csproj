@@ -267,6 +267,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="sons\musiqueFond.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Son\MusiqueFond.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
