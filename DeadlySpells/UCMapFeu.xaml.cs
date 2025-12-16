@@ -148,11 +148,7 @@ namespace DeadlySpells
         /// <summary>
         /// Applique la gravité, gère le sol, les épines et le respawn pour un joueur.
         /// </summary>
-        private void AppliquerPhysique(Image imageJoueur,
-                                       ref double vitesseVerticale,
-                                       ref bool estAuSol,
-                                       ref int viesJoueur,
-                                       double positionRespawnX)
+        private void AppliquerPhysique(Image imageJoueur,  ref double vitesseVerticale, ref bool estAuSol, ref int viesJoueur,  double positionRespawnX)
         {
             double positionY = Canvas.GetTop(imageJoueur);
             double positionX = Canvas.GetLeft(imageJoueur);

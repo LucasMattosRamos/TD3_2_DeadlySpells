@@ -17,29 +17,20 @@ using System.Windows.Threading;
 
 namespace DeadlySpells
 {
-    /// <summary>
-    /// Logique d'interaction pour UCMapGlace.xaml
-    /// </summary>
     public partial class UCMapGlace : UserControl
     {
         // --- Constantes du terrain / physique ---
-
-        // Position Y du joueur lorsqu'il est posé sur le sol (Canvas.Top au repos)
         private const double HauteurSol = 494;
-
-        // Hauteur à partir de laquelle on considère que le joueur touche les épines
         private const double HauteurEpines = 750;
-
-        // Limites horizontales de la plateforme de glace
         private const double LimiteGauchePlateforme = 150;
-        private const double LimiteDroitePlateforme = 150 + 1620 - 200; // largeur sol - largeur perso
+        private const double LimiteDroitePlateforme = 150 + 1620 - 200;
 
         // Paramètres de mouvement
-        private const double VitesseDeplacement = 15;   // vitesse horizontale
-        private const double Gravite = 1.2;             // gravité appliquée à chaque tick
-        private const double VitesseSaut = -22;         // vitesse verticale initiale pour le saut
+        private const double VitesseDeplacement = 15;
+        private const double Gravite = 1.2;
+        private const double VitesseSaut = -22;
 
-        // État des joueurs (vertical)
+        // État des joueurs
         private double vitesseVerticaleJ1 = 0;
         private double vitesseVerticaleJ2 = 0;
         private bool estAuSolJ1 = true;
@@ -48,133 +39,153 @@ namespace DeadlySpells
         private int viesJ1 = 3;
         private int viesJ2 = 3;
 
-        private DispatcherTimer timer;
+        private bool jeuEstFini = false;
+
+        // CORRECTION : Le "?" signifie que timer peut être null
+        private DispatcherTimer? timer;
 
         public UCMapGlace()
         {
             InitializeComponent();
 
-            // --- Initialisation de l'image du Joueur 1 ---
-            if (MainWindow.Joueur1Choix == "Feu")
-                imgJoueur1.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard_fire/1_IDLE_000.png", UriKind.Relative));
-            else if (MainWindow.Joueur1Choix == "Glace")
-                imgJoueur1.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard_ice/1_IDLE_000.png", UriKind.Relative));
-            else if (MainWindow.Joueur1Choix == "Orage")
-                imgJoueur1.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard/1_IDLE_000.png", UriKind.Relative));
+            // On attend que l'écran soit totalement chargé pour lancer la partie et mettre le focus
+            this.Loaded += (s, e) =>
+            {
+                InitialiserPartie();
+                this.Focus(); // <-- C'est ça qui réactive le clavier !
+            };
+        }
 
-            // --- Initialisation de l'image du Joueur 2 ---
-            if (MainWindow.Joueur2Choix == "Feu")
-                imgJoueur2.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard_fire/1_IDLE_000.png", UriKind.Relative));
-            else if (MainWindow.Joueur2Choix == "Glace")
-                imgJoueur2.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard_ice/1_IDLE_000.png", UriKind.Relative));
-            else if (MainWindow.Joueur2Choix == "Orage")
-                imgJoueur2.Source = new BitmapImage(new Uri("/ImagesSorcier/PNG/wizard/1_IDLE_000.png", UriKind.Relative));
+        private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Redonne le focus clavier au UserControl, assurant que les touches Q/D/Z fonctionnent
+            this.Focus();
+        }
 
-            // Focus clavier
-            this.Focusable = true;
-            this.Loaded += (s, e) => this.Focus();
+        private void InitialiserPartie()
+        {
+            // Reset des variables
+            viesJ1 = 3;
+            viesJ2 = 3;
+            vitesseVerticaleJ1 = 0;
+            vitesseVerticaleJ2 = 0;
+            estAuSolJ1 = true;
+            estAuSolJ2 = true;
+            jeuEstFini = false;
 
-            // Timer pour la gravité / les chutes (environ 60 FPS)
+            // Reset UI
+            if (GridFinDePartie != null) GridFinDePartie.Visibility = Visibility.Collapsed;
+            MettreAJourViesUI();
+
+            // Positions de départ
+            Canvas.SetLeft(imgJoueur1, 299);
+            Canvas.SetTop(imgJoueur1, HauteurSol);
+            scaleJoueur1.ScaleX = 1;
+
+            Canvas.SetLeft(imgJoueur2, 1416);
+            Canvas.SetTop(imgJoueur2, HauteurSol);
+            scaleJoueur2.ScaleX = -1;
+
+            // --- Chargement des Images ---
+            ChargerSkinJoueur(imgJoueur1, MainWindow.Joueur1Choix);
+            ChargerSkinJoueur(imgJoueur2, MainWindow.Joueur2Choix);
+
+            // Timer
+            if (timer != null) timer.Stop();
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(16);
             timer.Tick += Timer_Tick;
             timer.Start();
+
+            // Focus
+            this.Focus();
         }
 
-        // Gestion des touches clavier (déplacement + orientation)
+        private void ChargerSkinJoueur(Image img, string choix)
+        {
+            string dossier = "wizard"; // Default Orage
+            if (choix == "Feu") dossier = "wizard_fire";
+            else if (choix == "Glace") dossier = "wizard_ice";
+
+            img.Source = new BitmapImage(new Uri($"/ImagesSorcier/PNG/{dossier}/1_IDLE_000.png", UriKind.Relative));
+        }
+
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
+            if (jeuEstFini) return;
+
             double positionJ1 = Canvas.GetLeft(imgJoueur1);
             double positionJ2 = Canvas.GetLeft(imgJoueur2);
 
-            // Sécurité : si jamais la position n'est pas définie (NaN)
-            if (double.IsNaN(positionJ1))
-                positionJ1 = 299;
-            if (double.IsNaN(positionJ2))
-                positionJ2 = 1416;
+            if (double.IsNaN(positionJ1)) positionJ1 = 299;
+            if (double.IsNaN(positionJ2)) positionJ2 = 1416;
 
             switch (e.Key)
             {
-                // --- Joueur 1 : Q / D / Z ---
+                // --- Joueur 1 ---
                 case Key.D:
                     Canvas.SetLeft(imgJoueur1, positionJ1 + VitesseDeplacement);
-                    scaleJoueur1.ScaleX = 1;   // regarde à droite
+                    scaleJoueur1.ScaleX = 1;
                     break;
-
                 case Key.Q:
                     Canvas.SetLeft(imgJoueur1, positionJ1 - VitesseDeplacement);
-                    scaleJoueur1.ScaleX = -1;  // regarde à gauche
+                    scaleJoueur1.ScaleX = -1;
                     break;
-
                 case Key.Z:
-                    if (estAuSolJ1)
-                    {
-                        vitesseVerticaleJ1 = VitesseSaut;
-                        estAuSolJ1 = false;
-                    }
+                    if (estAuSolJ1) { vitesseVerticaleJ1 = VitesseSaut; estAuSolJ1 = false; }
                     break;
-
                 case Key.Space:
                     LancerSort(imgJoueur1, MainWindow.Joueur1Choix);
                     break;
 
-                // --- Joueur 2 : flèches gauche / droite / haut ---
+                // --- Joueur 2 ---
                 case Key.Right:
                     Canvas.SetLeft(imgJoueur2, positionJ2 + VitesseDeplacement);
-                    scaleJoueur2.ScaleX = 1;   // regarde à droite
+                    scaleJoueur2.ScaleX = 1;
                     break;
-
                 case Key.Left:
                     Canvas.SetLeft(imgJoueur2, positionJ2 - VitesseDeplacement);
-                    scaleJoueur2.ScaleX = -1;  // regarde à gauche
+                    scaleJoueur2.ScaleX = -1;
                     break;
-
                 case Key.Up:
-                    if (estAuSolJ2)
-                    {
-                        vitesseVerticaleJ2 = VitesseSaut;
-                        estAuSolJ2 = false;
-                    }
+                    if (estAuSolJ2) { vitesseVerticaleJ2 = VitesseSaut; estAuSolJ2 = false; }
                     break;
-
                 case Key.Enter:
                     LancerSort(imgJoueur2, MainWindow.Joueur2Choix);
                     break;
             }
         }
 
-        // Tick du timer : gravité / sol / épines
         private void Timer_Tick(object? sender, EventArgs e)
         {
-            // 299 et 1416 = positions de respawn X des joueurs sur la map glace
-            AppliquerPhysique(imgJoueur1, ref vitesseVerticaleJ1, ref estAuSolJ1, ref viesJ1, 299);
-            AppliquerPhysique(imgJoueur2, ref vitesseVerticaleJ2, ref estAuSolJ2, ref viesJ2, 1416);
+            if (jeuEstFini) return;
+
+            bool j1EstMort = AppliquerPhysique(imgJoueur1, ref vitesseVerticaleJ1, ref estAuSolJ1, ref viesJ1, 299);
+            bool j2EstMort = AppliquerPhysique(imgJoueur2, ref vitesseVerticaleJ2, ref estAuSolJ2, ref viesJ2, 1416);
+
+            if (j1EstMort || j2EstMort)
+            {
+                MettreAJourViesUI();
+                VerifierFinDePartie();
+            }
         }
 
-        /// <summary>
-        /// Applique la gravité, gère le sol, les épines et le respawn pour un joueur.
-        /// </summary>
-        private void AppliquerPhysique(Image imageJoueur,
-                                       ref double vitesseVerticale,
-                                       ref bool estAuSol,
-                                       ref int viesJoueur,
-                                       double positionRespawnX)
+        private bool AppliquerPhysique(Image imageJoueur, ref double vitesseVerticale, ref bool estAuSol, ref int viesJoueur, double positionRespawnX)
         {
+            bool aPerduUneVie = false;
             double positionY = Canvas.GetTop(imageJoueur);
             double positionX = Canvas.GetLeft(imageJoueur);
 
             bool estHorsPlateforme = positionX < LimiteGauchePlateforme || positionX > LimiteDroitePlateforme;
 
-            // Si le joueur saute ou est au-dessus du vide, on applique la gravité
             if (!estAuSol || estHorsPlateforme)
             {
-                vitesseVerticale += Gravite;     // accélération vers le bas
-                positionY += vitesseVerticale;   // nouvelle position verticale
+                vitesseVerticale += Gravite;
+                positionY += vitesseVerticale;
                 Canvas.SetTop(imageJoueur, positionY);
                 estAuSol = false;
             }
 
-            // Si le joueur retombe sur la plateforme
             if (!estHorsPlateforme && positionY >= HauteurSol && vitesseVerticale >= 0)
             {
                 positionY = HauteurSol;
@@ -183,34 +194,60 @@ namespace DeadlySpells
                 estAuSol = true;
             }
 
-            // Si le joueur tombe sur les épines (trop bas)
             if (positionY >= HauteurEpines)
             {
                 viesJoueur--;
+                aPerduUneVie = true;
 
-                if (viesJoueur <= 0)
+                if (viesJoueur > 0)
                 {
-                    MessageBox.Show("Le joueur a perdu ses 3 vies !");
-                    viesJoueur = 3; // pour continuer à tester
+                    Canvas.SetLeft(imageJoueur, positionRespawnX);
+                    Canvas.SetTop(imageJoueur, HauteurSol);
+                    vitesseVerticale = 0;
+                    estAuSol = true;
                 }
+                else
+                {
+                    Canvas.SetTop(imageJoueur, HauteurEpines + 100);
+                }
+            }
 
-                // Respawn sur la plateforme
-                Canvas.SetLeft(imageJoueur, positionRespawnX);
-                Canvas.SetTop(imageJoueur, HauteurSol);
-                vitesseVerticale = 0;
-                estAuSol = true;
+            return aPerduUneVie;
+        }
+
+        private void MettreAJourViesUI()
+        {
+            string coeursJ1 = "";
+            for (int i = 0; i < viesJ1; i++) coeursJ1 += "❤️";
+            txtViesJ1.Text = coeursJ1;
+
+            string coeursJ2 = "";
+            for (int i = 0; i < viesJ2; i++) coeursJ2 += "❤️";
+            txtViesJ2.Text = coeursJ2;
+        }
+
+        private void VerifierFinDePartie()
+        {
+            if (viesJ1 <= 0 || viesJ2 <= 0)
+            {
+                jeuEstFini = true;
+                if (timer != null) timer.Stop();
+
+                string gagnant = "";
+                if (viesJ1 <= 0 && viesJ2 > 0) gagnant = "JOUEUR 2";
+                else if (viesJ2 <= 0 && viesJ1 > 0) gagnant = "JOUEUR 1";
+                else gagnant = "PERSONNE (Egalité)";
+
+                txtGagnant.Text = gagnant + " REMPORTE LA PARTIE !";
+                GridFinDePartie.Visibility = Visibility.Visible;
             }
         }
+
         private void LancerSort(Image joueur, string choixSorcier)
         {
-            string dossier;
-
-            if (choixSorcier == "Feu")
-                dossier = "wizard_fire";
-            else if (choixSorcier == "Glace")
-                dossier = "wizard_ice";
-            else
-                dossier = "wizard"; // par défaut (Orage)
+            string dossier = "wizard";
+            if (choixSorcier == "Feu") dossier = "wizard_fire";
+            else if (choixSorcier == "Glace") dossier = "wizard_ice";
 
             int frame = 0;
             DispatcherTimer sort = new DispatcherTimer();
@@ -220,10 +257,23 @@ namespace DeadlySpells
                 string path = $"/ImagesSorcier/PNG/{dossier}/5_ATTACK_{frame:D3}.png";
                 joueur.Source = new BitmapImage(new Uri(path, UriKind.Relative));
                 frame++;
-
                 if (frame > 6) sort.Stop();
             };
             sort.Start();
+        }
+
+        private void BtnRejouer_Click(object sender, RoutedEventArgs e)
+        {
+            InitialiserPartie();
+        }
+
+        private void BtnQuitter_Click(object sender, RoutedEventArgs e)
+        {
+
+
+
+
+            Application.Current.Shutdown();
         }
     }
 }

@@ -36,10 +36,12 @@ namespace DeadlySpells
 
         }
 
+
         private void butQuitter_Click(object sender, RoutedEventArgs e)
         {
             // Cette instruction ferme complètement l'application WPF.
             Application.Current.Shutdown();
         }
+
     }
 }
