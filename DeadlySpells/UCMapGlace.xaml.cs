@@ -257,11 +257,69 @@ namespace DeadlySpells
                 string path = $"/ImagesSorcier/PNG/{dossier}/5_ATTACK_{frame:D3}.png";
                 joueur.Source = new BitmapImage(new Uri(path, UriKind.Relative));
                 frame++;
-                if (frame > 6) sort.Stop();
+                if (frame > 6)
+                {
+                    sort.Stop();
+                    joueur.Source = new BitmapImage(new Uri($"/ImagesSorcier/PNG/{dossier}/1_IDLE_000.png", UriKind.Relative));
+                }
             };
             sort.Start();
         }
+        private void LancerHurt(Image joueur, string choixSorcier)
+        {
+            string dossier;
 
+            if (choixSorcier == "Feu")
+                dossier = "wizard_fire";
+            else if (choixSorcier == "Glace")
+                dossier = "wizard_ice";
+            else
+                dossier = "wizard"; // par défaut (Orage)
+
+            int frame = 0;
+            DispatcherTimer hurt = new DispatcherTimer();
+            hurt.Interval = TimeSpan.FromMilliseconds(100);
+            hurt.Tick += (s, e) =>
+            {
+                string path = $"/ImagesSorcier/PNG/{dossier}/6_HURT_{frame:D3}.png";
+                joueur.Source = new BitmapImage(new Uri(path, UriKind.Relative));
+                frame++;
+                if (frame > 4)
+                {
+                    hurt.Stop();
+                    joueur.Source = new BitmapImage(new Uri($"/ImagesSorcier/PNG/{dossier}/1_IDLE_000.png", UriKind.Relative));
+                }
+            };
+            hurt.Start();
+        }
+
+        private void LancerDie(Image joueur, string choixSorcier)
+        {
+            string dossier;
+
+            if (choixSorcier == "Feu")
+                dossier = "wizard_fire";
+            else if (choixSorcier == "Glace")
+                dossier = "wizard_ice";
+            else
+                dossier = "wizard"; // par défaut (Orage)
+
+            int frame = 0;
+            DispatcherTimer die = new DispatcherTimer();
+            die.Interval = TimeSpan.FromMilliseconds(100);
+            die.Tick += (s, e) =>
+            {
+                string path = $"/ImagesSorcier/PNG/{dossier}/7_DIE_{frame:D3}.png";
+                joueur.Source = new BitmapImage(new Uri(path, UriKind.Relative));
+                frame++;
+                if (frame > 4)
+                {
+                    die.Stop();
+                    joueur.Source = new BitmapImage(new Uri($"/ImagesSorcier/PNG/{dossier}/1_IDLE_000.png", UriKind.Relative));
+                }
+            };
+            die.Start();
+        }
         private void BtnRejouer_Click(object sender, RoutedEventArgs e)
         {
             InitialiserPartie();
