@@ -160,27 +160,20 @@ namespace DeadlySpells
             if (Keyboard.IsKeyDown(Key.D))
             {
                 double prochainX = xJ1 + VitesseDeplacement;
-
-                // Comme dans ton SNAKE : on vérifie la limite avant de bouger
-                if (prochainX <= LimiteDroitePlateforme)
-                {
-                    Canvas.SetLeft(imgJoueur1, prochainX);
-                    scaleJoueur1.ScaleX = 1; // regarde à droite
-                    xJ1 = prochainX;
-                }
+                // Supprime la condition 'if (prochainX <= LimiteDroitePlateforme)'
+                Canvas.SetLeft(imgJoueur1, prochainX);
+                scaleJoueur1.ScaleX = 1;
+                xJ1 = prochainX;
             }
 
             // Gauche (Q)
             if (Keyboard.IsKeyDown(Key.Q))
             {
                 double prochainX = xJ1 - VitesseDeplacement;
-
-                if (prochainX >= LimiteGauchePlateforme)
-                {
-                    Canvas.SetLeft(imgJoueur1, prochainX);
-                    scaleJoueur1.ScaleX = -1; // regarde à gauche
-                    xJ1 = prochainX;
-                }
+                // Supprime la condition 'if (prochainX >= LimiteGauchePlateforme)'
+                Canvas.SetLeft(imgJoueur1, prochainX);
+                scaleJoueur1.ScaleX = -1;
+                xJ1 = prochainX;
             }
 
             // Saut (Z)
@@ -204,28 +197,21 @@ namespace DeadlySpells
             // Droite (→)
             if (Keyboard.IsKeyDown(Key.Right))
             {
+                // On retire la vérification de LimiteDroitePlateforme
                 double prochainX = xJ2 + VitesseDeplacement;
-
-                // Ici on utilise les mêmes limites que pour J1, tu peux adapter si besoin
-                if (prochainX <= LimiteDroitePlateforme)
-                {
-                    Canvas.SetLeft(imgJoueur2, prochainX);
-                    scaleJoueur2.ScaleX = 1; // regarde à droite
-                    xJ2 = prochainX;
-                }
+                Canvas.SetLeft(imgJoueur2, prochainX);
+                scaleJoueur2.ScaleX = 1; // regarde à droite
+                xJ2 = prochainX;
             }
 
             // Gauche (←)
             if (Keyboard.IsKeyDown(Key.Left))
             {
+                // On retire la vérification de LimiteGauchePlateforme
                 double prochainX = xJ2 - VitesseDeplacement;
-
-                if (prochainX >= LimiteGauchePlateforme)
-                {
-                    Canvas.SetLeft(imgJoueur2, prochainX);
-                    scaleJoueur2.ScaleX = -1; // regarde à gauche
-                    xJ2 = prochainX;
-                }
+                Canvas.SetLeft(imgJoueur2, prochainX);
+                scaleJoueur2.ScaleX = -1; // regarde à gauche
+                xJ2 = prochainX;
             }
 
             // Saut (↑)

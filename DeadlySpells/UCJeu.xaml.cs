@@ -15,17 +15,4 @@ using System.Windows.Shapes;
 
 namespace DeadlySpells
 {
-    /// <summary>
-    /// Logique d'interaction pour UCJeu.xaml
-    /// </summary>
-    public partial class UCJeu : UserControl
-    {
-
-        public UCJeu()
-        {
-            InitializeComponent();
-        }
-
-
-    }
 }
