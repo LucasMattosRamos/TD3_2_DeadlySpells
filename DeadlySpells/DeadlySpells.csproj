@@ -139,6 +139,7 @@
     <None Remove="Images\imageAccueil.jpg" />
     <None Remove="Images\lightning.png" />
     <None Remove="Images\RegleDeJeu.png" />
+    <None Remove="Images\RegleEcrit.png" />
     <None Remove="Images\RegleEcrite.png" />
     <None Remove="Images\Regles du jeu.png" />
     <None Remove="Images\REGLESDUJEU.png" />
@@ -271,7 +272,7 @@
     <Resource Include="Images\Fond.png" />
     <Resource Include="Images\ice.png" />
     <Resource Include="Images\lightning.png" />
-    <Resource Include="Images\Regles du jeu.png" />
+    <Resource Include="Images\RegleEcrit.png" />
     <Resource Include="Images\REGLESDUJEU.png" />
   </ItemGroup>
 

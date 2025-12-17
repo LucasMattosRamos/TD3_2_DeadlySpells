@@ -13,7 +13,7 @@
 
 
         </StackPanel>
-        <Image Margin="191,101,191,101" Source="/Images/Regles du jeu.png" Stretch="Fill"/>
+        <Image Margin="191,101,191,101" Source="/Images/RegleEcrit.png" Stretch="Fill"/>
         <Image Margin="-568,-292,1165,614" Source="/Images/REGLESDUJEU.png" Stretch="Fill" Width="203" Height="128"/>
         <Button x:Name="butSuivant" Content="SUIVANT"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,50,30" Background="#FFFFE012" FontFamily="Goudy Old Style" Height="55" Width="120" FontSize="20" FontWeight="Bold"/>
 
