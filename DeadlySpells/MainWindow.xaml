@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DeadlySpells"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowState="Maximized"  ResizeMode="CanResize" >
+        Title="Deadly Spells" Height="450" Width="800" WindowState="Maximized"  ResizeMode="CanResize" >
     <ContentControl x:Name="ZoneJeu" />
     <ContentControl.Background>
         <ImageBrush ImageSource="/Images/Fond.png"/>
