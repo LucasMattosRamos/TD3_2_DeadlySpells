@@ -140,6 +140,7 @@
     <None Remove="Images\lightning.png" />
     <None Remove="Images\RegleDeJeu.png" />
     <None Remove="Images\RegleEcrite.png" />
+    <None Remove="Images\Regles du jeu.png" />
     <None Remove="Images\REGLESDUJEU.png" />
     <None Remove="Son\Musique-Mystère-Epique-Suspens-Magie-Action-Musique-Libre-de-Droit.wav" />
   </ItemGroup>
@@ -270,7 +271,7 @@
     <Resource Include="Images\Fond.png" />
     <Resource Include="Images\ice.png" />
     <Resource Include="Images\lightning.png" />
-    <Resource Include="Images\RegleEcrite.png" />
+    <Resource Include="Images\Regles du jeu.png" />
     <Resource Include="Images\REGLESDUJEU.png" />
   </ItemGroup>
 

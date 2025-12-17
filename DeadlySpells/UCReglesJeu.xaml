@@ -13,11 +13,12 @@
 
 
         </StackPanel>
-        <Image Margin="125,72,125,72" Source="/Images/RegleEcrite.png" Stretch="Fill" Height="307" Width="551"/>
-        <Image Margin="-29,-24,626,346" Source="/Images/REGLESDUJEU.png" Stretch="Fill" Width="203" Height="128"/>
+        <Image Margin="191,101,191,101" Source="/Images/Regles du jeu.png" Stretch="Fill"/>
+        <Image Margin="-568,-292,1165,614" Source="/Images/REGLESDUJEU.png" Stretch="Fill" Width="203" Height="128"/>
         <Button x:Name="butSuivant" Content="SUIVANT"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,50,30" Background="#FFFFE012" FontFamily="Goudy Old Style" Height="55" Width="120" FontSize="20" FontWeight="Bold"/>
 
         <Button x:Name="butRetour" Content="RETOUR"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="50,0,0,30" BorderBrush="{x:Null}" Foreground="Black" FontSize="20" Background="#FFFFE012" FontFamily="Goudy Old Style" Height="55" Width="120" FontWeight="Bold"/>
+       
 
 
 
