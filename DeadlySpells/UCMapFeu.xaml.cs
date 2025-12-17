@@ -37,7 +37,7 @@ namespace DeadlySpells
 
         // Paramètres de mouvement
         private const double VitesseDeplacement = 15;
-        private const double Gravite = 1.2;
+        private const double Gravite = 0.8;
         private const double VitesseSaut = -22;
 
         // Vitesse des projectiles
